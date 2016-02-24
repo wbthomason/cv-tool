@@ -3,7 +3,9 @@ extra-package-dbs: []
 packages:
 - '.'
 extra-deps:
+- bibtex-0.1.0.5
 - htoml-0.1.0.3
+- latex-0.1.0.3
 - pandoc-1.16.0.2
 - text-1.2.2.0
 - yaml-0.8.16
