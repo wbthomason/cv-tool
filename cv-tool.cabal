@@ -15,7 +15,7 @@ cabal-version:       >=1.10
 
 library
   hs-source-dirs:      lib
-  exposed-modules:     CVTool.Reader, CVTool.Writer, CVTool.Options
+  exposed-modules:     CVTool.Reader, CVTool.Options
   build-depends:       base >= 4.7 && < 5,
                        aeson,
                        yaml,
@@ -31,7 +31,8 @@ executable cv-tool
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base,
                        cv-tool,
-                       filepath
+                       filepath,
+                       pandoc
   default-language:    Haskell2010
 
 test-suite cv-tool-test
