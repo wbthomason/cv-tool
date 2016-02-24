@@ -7,10 +7,8 @@ import Control.Monad
 import Data.List
 import System.Console.GetOpt
 import System.Environment
+import System.FilePath
 import System.IO
-
-updateOptions :: ToolOptions -> (ToolOptions -> ToolOptions) -> ToolOptions
-updateOptions base option = option base
 
 main = do
   args <- getArgs
@@ -19,6 +17,20 @@ main = do
   let ToolOptions {
     optHelp = help,
     optInFile = inFile,
-    optOutFile = outFile
+    optOutFile = outFile,
+    optTemplate = template
   } = options'
   when help printHelp
+  let reader = case takeExtension inFile of
+                    ".yaml" ->  readYaml  
+                    ".toml" ->  readToml
+                    ".json" ->  readJson
+  let writer = case takeExtension outFile of
+                    ".pdf"  ->  writePdf
+                    ".tex"  ->  writeTex
+                    ".md"   ->  writeMarkdown
+                    ".json" ->  writeJson
+                    ".html" ->  writeHtml
+  templateData <- readFile template
+  inputData <- readFile inFile
+  writeFile outFile $ writer templateData $ reader inputData
