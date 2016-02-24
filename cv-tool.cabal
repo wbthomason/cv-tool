@@ -15,13 +15,14 @@ cabal-version:       >=1.10
 
 library
   hs-source-dirs:      src
-  exposed-modules:     Lib
+  exposed-modules:     CVTool,
+                       CVTool.
   build-depends:       base >= 4.7 && < 5, aeson, yaml, htoml, pandoc, bibtex
   default-language:    Haskell2010
 
-executable cv-tool-exe
+executable cv-tool
   hs-source-dirs:      app
-  main-is:             Main.hs
+  main-is:             cv-tool.hs
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base
                      , cv-tool
@@ -38,4 +39,4 @@ test-suite cv-tool-test
 
 source-repository head
   type:     git
-  location: https://github.com/githubuser/cv-tool
+  location: https://github.com/wbthomason/cv-tool
