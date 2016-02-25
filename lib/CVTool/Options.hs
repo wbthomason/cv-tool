@@ -10,7 +10,8 @@ data ToolOptions = ToolOptions {
   optHelp       :: Bool,
   optInFile     :: FilePath,
   optOutFile    :: FilePath,
-  optTemplate   :: FilePath
+  optTemplate   :: FilePath,
+  optPdfCreator :: String
 }
 
 toolOptionDescs = [ 
@@ -23,14 +24,16 @@ toolOptionDescs = [
     (ReqArg (\arg opt -> opt { optOutFile = arg }) "FILE")
     "The desired filename for the output CV. Format is inferred from the extension,\
     \ and can be PDF, LaTeX, Markdown, JSON, or HTML. Defaults to cv.pdf",
-  Option "" ["template"] (ReqArg (\arg opt -> opt { optTemplate = arg }) "FILE") "The template file to use. Each output filetype has its own default."
+  Option "" ["template"] (ReqArg (\arg opt -> opt { optTemplate = arg }) "FILE") "The template file to use. Each output filetype has its own default.",
+  Option "p" ["pdf-engine"] (ReqArg (\arg opt -> opt { optPdfCreator = arg }) "FILE") "The PDF engine to use (only for making a PDF output). Default is pdflatex."
   ]
 
 defaultOptions = ToolOptions {
   optHelp       = False,
   optInFile     = "cv.yaml",
   optOutFile    = "cv.pdf",
-  optTemplate   = "default.tex"
+  optTemplate   = "default.tex",
+  optPdfCreator = "pdflatex"
 }
 
 printHelp = do
