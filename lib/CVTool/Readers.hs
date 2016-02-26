@@ -13,12 +13,11 @@ import Text.Toml
 import Data.Map.Strict
 
 
-buildPandoc :: (a -> Either String Meta) -> a -> Pandoc
+buildPandoc :: (a -> Either String Meta) -> a -> Either String Pandoc
 buildPandoc parser rawData = 
   case parser rawData of
-        Right cvData -> Pandoc cvData []
-        -- TODO: Actually print exception
-        Left errMsg  -> Prelude.head $ Data.Either.rights [readNative "hello"]
+        Right cvData  -> Right $ Pandoc cvData []
+        Left errMsg   -> Left errMsg
 
 tomlToJson :: Text -> Result Meta
 tomlToJson inputData = 
