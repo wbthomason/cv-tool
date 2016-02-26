@@ -5,17 +5,19 @@ import CVTool.Readers
 import CVTool.Writers
 import Control.Monad
 import Data.ByteString (readFile)
-import Data.List
+import Data.ByteString.Lazy (fromStrict)
+import Data.List as List
 import Prelude hiding (readFile)
 import System.Console.GetOpt
 import System.Environment
 import System.FilePath
 import System.IO hiding (readFile)
+import Data.Text.Encoding (decodeUtf8)
 
 main = do
   args <- getArgs
   let (options, _, _) = getOpt Permute toolOptionDescs args
-  let options' = foldl (flip id) defaultOptions options
+  let options' = List.foldl (flip id) defaultOptions options
   let ToolOptions {
     optHelp       = help,
     optInFile     = inFile,
@@ -26,8 +28,8 @@ main = do
   when help printHelp
   let reader = case takeExtension inFile of
                     ".yaml" ->  readYaml  
-                    ".toml" ->  readToml
-                    ".json" ->  readJson
+                    ".toml" ->  readToml . decodeUtf8
+                    ".json" ->  readJson . fromStrict
   let writer = case takeExtension outFile of
                     ".pdf"  ->  writePDF
                     ".tex"  ->  writeLaTeX
