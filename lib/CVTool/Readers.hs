@@ -1,16 +1,10 @@
 module CVTool.Readers (readJson, readYaml, readToml) where
 
-import Data.Aeson as Ae (eitherDecode', FromJSON(..), toJSON, fromJSON, Result(..))
-import Data.ByteString
-import Data.Either
-import Data.Text (Text)
+import Data.Aeson as Ae (eitherDecode', toJSON, fromJSON, Result(..))
 import Data.Yaml (decodeEither)
-import GHC.Generics
-import System.Exit
-import Text.Pandoc (readNative, Pandoc(..), Meta(..))
+import Text.Pandoc (Pandoc(..))
 import Text.Parsec
 import Text.Toml
-import Data.Map.Strict
 
 buildPandoc parser rawData = (\cvData -> Pandoc cvData []) <$> parser rawData
 
