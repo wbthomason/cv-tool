@@ -17,7 +17,7 @@ data CVData = CVData {
 
 instance FromJSON CVData
 
-buildPandoc :: FromJSON a => (ByteString -> Either String a) -> ByteString -> Pandoc
+buildPandoc :: (b -> Either String CVData) -> b -> Pandoc
 buildPandoc parser rawData = 
   case parser rawData of
         Right cvData -> Prelude.head $ Data.Either.rights [readNative "hello"]
