@@ -25,7 +25,8 @@ library
                        filepath,
                        bytestring,
                        parsec,
-                       text
+                       text,
+                       containers
   default-language:    Haskell2010
 
 executable cv-tool
