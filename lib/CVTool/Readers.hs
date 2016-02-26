@@ -12,11 +12,8 @@ import Text.Parsec
 import Text.Toml
 import Data.Map.Strict
 
-
-buildPandoc :: (a -> Either String Meta) -> a -> Either String Pandoc
 buildPandoc parser rawData = (\cvData -> Pandoc cvData []) <$> parser rawData
 
-tomlToJson :: Text -> Result Meta
 tomlToJson inputData = 
   case parseTomlDoc "InputCVData" inputData of
         Right toml  -> fromJSON . toJSON $ toml
