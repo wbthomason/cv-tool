@@ -3,7 +3,6 @@ module CVTool.Options (ToolOptions(..), toolOptionDescs, defaultOptions, printHe
 import System.Console.GetOpt
 import System.Environment
 import System.Exit
-import System.FilePath
 import System.IO
 
 data ToolOptions = ToolOptions {
