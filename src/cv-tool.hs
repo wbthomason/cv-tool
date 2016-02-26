@@ -4,12 +4,13 @@ import CVTool.Options
 import CVTool.Readers
 import CVTool.Writers
 import Control.Monad
+import Data.ByteString (readFile)
 import Data.List
+import Prelude hiding (readFile)
 import System.Console.GetOpt
 import System.Environment
 import System.FilePath
-import System.IO
-import Data.ByteString (readFile)
+import System.IO hiding (readFile)
 
 main = do
   args <- getArgs

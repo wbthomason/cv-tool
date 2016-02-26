@@ -23,7 +23,9 @@ library
                        pandoc,
                        bibtex,
                        filepath,
-                       bytestring
+                       bytestring,
+                       parsec,
+                       text
   default-language:    Haskell2010
 
 executable cv-tool
