@@ -14,10 +14,7 @@ import Data.Map.Strict
 
 
 buildPandoc :: (a -> Either String Meta) -> a -> Either String Pandoc
-buildPandoc parser rawData = 
-  case parser rawData of
-        Right cvData  -> Right $ Pandoc cvData []
-        Left errMsg   -> Left errMsg
+buildPandoc parser rawData = (\cvData -> Pandoc cvData []) <$> parser rawData
 
 tomlToJson :: Text -> Result Meta
 tomlToJson inputData = 
