@@ -31,7 +31,7 @@ defaultOptions = ToolOptions {
   optHelp       = False,
   optInFile     = "cv.yaml",
   optOutFile    = "cv.pdf",
-  optTemplate   = "default.tex",
+  optTemplate   = "default",
   optPdfCreator = "pdflatex"
 }
 

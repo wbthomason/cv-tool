@@ -26,7 +26,8 @@ library
                        bytestring,
                        parsec,
                        text,
-                       containers
+                       containers,
+                       pandoc-citeproc
   default-language:    Haskell2010
 
 executable cv-tool
@@ -36,7 +37,8 @@ executable cv-tool
   build-depends:       base,
                        cv-tool,
                        filepath,
-                       bytestring
+                       bytestring,
+                       text
   default-language:    Haskell2010
 
 test-suite cv-tool-test
