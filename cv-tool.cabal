@@ -28,7 +28,9 @@ library
                        text,
                        containers,
                        pandoc-citeproc,
-                       template-haskell
+                       scientific,
+                       vector,
+                       unordered-containers
   default-language:    Haskell2010
 
 executable cv-tool
