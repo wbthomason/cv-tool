@@ -1,5 +1,3 @@
-{-# LANGUAGE DeriveGeneric #-}
-
 module CVTool.Readers (readJson, readYaml, readToml) where
 
 import Data.Aeson as Ae (eitherDecode', toJSON, fromJSON, Result(..), FromJSON(..), ToJSON(..), Value(..), Object(..))
@@ -18,11 +16,7 @@ import Data.Text
 import Data.Scientific (toRealFloat)
 import qualified Data.Vector as Vec
 import qualified Data.HashMap.Strict as HashMap
-
-data CVData = CVData { name :: String } deriving (Generic, Show)
-
-instance FromJSON CVData
-instance ToJSON CVData
+import CVTool.Types
 
 metaEncodeValue value =
   case value of
