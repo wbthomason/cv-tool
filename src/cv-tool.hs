@@ -13,6 +13,7 @@ import System.FilePath
 import System.IO
 import System.Exit
 import Data.Text.Encoding (decodeUtf8)
+import Debug.Trace
 
 main = do
   args <- getArgs

@@ -2,7 +2,7 @@
 
 module CVTool.Readers (readJson, readYaml, readToml) where
 
-import Data.Aeson as Ae (eitherDecode', toJSON, fromJSON, Result(..), FromJSON(..))
+import Data.Aeson as Ae (eitherDecode', toJSON, fromJSON, Result(..), FromJSON(..), Value(..), Object(..))
 import Data.Yaml (decodeEither)
 import Text.Pandoc
 import Text.Parsec
@@ -11,16 +11,32 @@ import Debug.Trace
 import Data.Text.Encoding
 import Data.Map.Strict as Map
 import GHC.Generics
+{- This is kinda hacky and bad. Should do this with GHC.Generics, but so much
+ - boilerplate -}
+import Data.Data
 import Data.Text
 
 data CVData = CVData { name :: String } deriving (Generic, Show)
 
 instance FromJSON CVData
 
-buildMeta cvData = Meta { unMeta = Map.fromList [("name", MetaString "Hello")] }
+metaEncodeValue value =
+  case value of
+        Map k v
+        String s
+        Bool t
 
-buildPandoc :: (a -> Either String CVData) -> b -> Either String Pandoc
-buildPandoc parser rawData = (\cvData -> Pandoc cvData []) <$> buildMeta . parser $ rawData
+
+makeMap cvData = 
+  Map.foldl (\acc (name, value) -> insert (unpack name) (metaEncodeValue value) acc) Map.empty cvMap
+  where Object cvMap = toJSON cvData
+
+buildMeta cvData = 
+  (\cv -> Meta { unMeta = makeMap cv }) <$> cvData
+
+
+buildPandoc :: (a -> Either String CVData) -> a -> Either String Pandoc
+buildPandoc parser inputData = (\meta -> Pandoc meta []) <$> (buildMeta . parser) inputData
 
 tomlToJson :: Text -> Result CVData
 tomlToJson inputData = 

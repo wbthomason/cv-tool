@@ -27,7 +27,8 @@ library
                        parsec,
                        text,
                        containers,
-                       pandoc-citeproc
+                       pandoc-citeproc,
+                       template-haskell
   default-language:    Haskell2010
 
 executable cv-tool
