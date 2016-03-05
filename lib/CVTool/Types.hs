@@ -2,8 +2,11 @@
 module CVTool.Types where 
 
 import Data.Aeson (FromJSON(..), ToJSON(..))
-import GHC.Generics
 import Data.Time
+
+import GHC.Generics
+
+import System.FilePath
 
 data CVLocation = CVLocation {
   address :: String,
@@ -28,11 +31,11 @@ instance ToJSON CVProfile
 data CVBasics = CVBasics {
   name :: String,
   label :: String,
-  picture_loc :: String,
+  pictureLoc :: String,
   email :: String,
   phone :: String,
-  personal_site :: String,
-  personal_summary :: String,
+  personalSite :: String,
+  personalSummary :: String,
   location :: CVLocation,
   profiles :: [CVProfile]
 }
@@ -43,10 +46,10 @@ instance ToJSON CVBasics
 data CVWork = CVWork {
   organization :: String,
   position :: String,
-  company_website :: String,
+  companyWebsite :: String,
   startDate :: String,
   endDate :: String,
-  work_summary :: String,
+  workSummary :: String,
   highlights :: [String]
 }
   deriving (Generic)
@@ -54,10 +57,10 @@ instance FromJSON CVWork
 instance ToJSON CVWork
 
 data CVCourse = CVCourse {
-  course_name :: String,
-  course_mnemonic :: String,
-  year_taken :: String,
-  grade_received :: String,
+  courseName :: String,
+  courseMnemonic :: String,
+  yearTaken :: String,
+  gradeReceived :: String,
   comments :: String
 }
   deriving (Generic)
@@ -67,9 +70,9 @@ instance ToJSON CVCourse
 data CVEducation = CVEducation {
   institution :: String,
   majors :: [String],
-  degree_earned :: String,
-  study_startDate :: String,
-  study_endDate :: String,
+  degreeEarned :: String,
+  studyStartDate :: String,
+  studyEndDate :: String,
   gpa :: Float,
   courses :: [CVCourse]
 }
@@ -78,58 +81,79 @@ instance FromJSON CVEducation
 instance ToJSON CVEducation
 
 data CVAwards = CVAwards {
-  award_name :: String,
-  date_awarded :: String,
+  awardName :: String,
+  dateAwarded :: String,
   awarder :: String,
-  award_summary :: String
+  awardSummary :: String
 }
   deriving (Generic)
 instance FromJSON CVAwards
 instance ToJSON CVAwards
 
 data CVPublication = CVPublication {
-  publication_type :: String,
-  publication_date :: String,
+  publicationType :: String,
+  publicationDate :: String,
   authors :: [String],
-  venue :: String,
-    publication_title :: String,
-  publication_link :: String
+  publicationVenue :: String,
+  publicationTitle :: String,
+  publicationLink :: String
 }
+  deriving (Generic)
+instance FromJSON CVPublication
+instance ToJSON CVPublication
 
-data CVPublications = CitationFile | [CVPublication]
+data CVPublications = CVPublicationFile FilePath | CVPublicationList [CVPublication]
   deriving (Generic)
 instance FromJSON CVPublications
 instance ToJSON CVPublications
 
-data CVPresentations = CVPresentations
+data CVPresentation = CVPresentation {
+  presentationTitle :: String,
+  presentationLink :: String,
+  presentationVenue :: String,
+  presentationDate :: String
+}
+  deriving (Generic)
+instance FromJSON CVPresentation
+instance ToJSON CVPresentation
+
+data CVPresentations = CVPresentationFile FilePath | CVPresentationList [CVPresentation]
   deriving (Generic)
 instance FromJSON CVPresentations
 instance ToJSON CVPresentations
 
-data CVSkill = CVSkill
+data CVSkill = CVSkill {
+  skillName :: String,
+  skillLevel :: String,
+  skillKeywords :: [String]
+}
   deriving (Generic)
 instance FromJSON CVSkill
 instance ToJSON CVSkill
 
-data CVResearch = CVResearch
+data CVResearch = CVResearch {
+  researchTopic :: String,
+  researchDescription :: String
+}
   deriving (Generic)
 instance FromJSON CVResearch
 instance ToJSON CVResearch
 
-data CVLanguage = CVLanguage
+data CVLanguage = CVLanguage {
+  language :: String,
+  fluency :: String
+}
   deriving (Generic)
 instance FromJSON CVLanguage
 instance ToJSON CVLanguage
 
-data CVInterest = CVInterest
+data CVInterest = CVInterest {
+  interestName :: String,
+  interestKeywords :: [String]
+}
   deriving (Generic)
 instance FromJSON CVInterest
 instance ToJSON CVInterest
-
-data CVReference = CVReference
-  deriving (Generic)
-instance FromJSON CVReference
-instance ToJSON CVReference
 
 data CVData = CVData { 
   basics :: CVBasics,
@@ -142,8 +166,7 @@ data CVData = CVData {
   skills :: [CVSkill],
   research :: CVResearch,
   languages :: [CVLanguage],
-  interests :: [CVInterest],
-  references :: [CVReference]
+  interests :: [CVInterest]
   } 
   deriving (Generic)
 

@@ -1,5 +1,6 @@
 module CVTool.Writers (writePDF, writeLaTeX, writeHtml, writeJSON, writeMarkdown) where
 
+import Text.CSL.Pandoc
 import qualified Text.Pandoc as P (
   writeJSON,
   writeMarkdown,
@@ -8,8 +9,6 @@ import qualified Text.Pandoc as P (
   WriterOptions(..),
   def)
 import Text.Pandoc.PDF
-import Text.CSL.Pandoc
-import Debug.Trace
 
 setOptions template = P.def { P.writerTemplate = template, P.writerStandalone = True }
 

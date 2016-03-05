@@ -3,17 +3,19 @@ module Main (main) where
 import CVTool.Options
 import CVTool.Readers
 import CVTool.Writers
+
 import Control.Monad
-import qualified Data.ByteString as B (readFile, writeFile)
+
 import Data.ByteString.Lazy (fromStrict)
+import qualified Data.ByteString as B (readFile, writeFile)
 import Data.List as List
+import Data.Text.Encoding (decodeUtf8)
+
 import System.Console.GetOpt
 import System.Environment
+import System.Exit
 import System.FilePath
 import System.IO
-import System.Exit
-import Data.Text.Encoding (decodeUtf8)
-import Debug.Trace
 
 main = do
   args <- getArgs
