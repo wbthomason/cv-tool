@@ -13,6 +13,7 @@ import Data.Yaml (decodeEither)
 import Text.Pandoc
 import Text.Parsec
 import Text.Toml
+import Debug.Trace
 
 metaEncodeValue value =
   case value of
@@ -22,8 +23,9 @@ metaEncodeValue value =
         Number n  -> MetaString $ show . toRealFloat $ n
         Bool b    -> MetaBool b
 
-makeMap = 
-  HashMap.foldlWithKey' (\acc name value -> Map.insert (unpack name) (metaEncodeValue value) acc) Map.empty
+makeMap cvMap = 
+  HashMap.foldlWithKey' (\acc name value -> Map.insert (unpack name) (metaEncodeValue value) acc) Map.empty cvValues
+  where cvValues = HashMap.filter (\value -> case value of Ae.Null -> False ; _ -> True) cvMap
 
 buildMeta cvData = 
   Meta { unMeta = makeMap cvData }

@@ -1,7 +1,7 @@
 {-# LANGUAGE DeriveGeneric #-}
 module CVTool.Types where 
 
-import Data.Aeson (FromJSON(..), ToJSON(..))
+import Data.Aeson
 import Data.Time
 
 import GHC.Generics
@@ -9,9 +9,10 @@ import GHC.Generics
 import System.FilePath
 
 data CVLocation = CVLocation {
-  address :: String,
+  address :: [String],
   postalCode :: String,
   city :: String,
+  state :: String,
   countryCode :: String,
   region :: String
 }
@@ -37,7 +38,9 @@ data CVBasics = CVBasics {
   personalSite :: String,
   personalSummary :: String,
   location :: CVLocation,
-  profiles :: [CVProfile]
+  profiles :: [CVProfile],
+  institution :: String,
+  department :: String
 }
   deriving (Generic)
 instance FromJSON CVBasics
@@ -60,21 +63,21 @@ data CVCourse = CVCourse {
   courseName :: String,
   courseMnemonic :: String,
   yearTaken :: String,
-  gradeReceived :: String,
-  comments :: String
+  gradeReceived :: Maybe String,
+  comments :: Maybe String
 }
   deriving (Generic)
 instance FromJSON CVCourse
 instance ToJSON CVCourse
 
 data CVEducation = CVEducation {
-  institution :: String,
+  school :: String,
   majors :: [String],
-  degreeEarned :: String,
+  degree :: String,
   studyStartDate :: String,
-  studyEndDate :: String,
-  gpa :: Float,
-  courses :: [CVCourse]
+  studyEndDate :: Maybe String,
+  gpa :: Maybe Float,
+  courses :: Maybe [CVCourse]
 }
   deriving (Generic)
 instance FromJSON CVEducation
@@ -84,7 +87,7 @@ data CVAwards = CVAwards {
   awardName :: String,
   dateAwarded :: String,
   awarder :: String,
-  awardSummary :: String
+  awardSummary :: Maybe String
 }
   deriving (Generic)
 instance FromJSON CVAwards
@@ -96,7 +99,8 @@ data CVPublication = CVPublication {
   authors :: [String],
   publicationVenue :: String,
   publicationTitle :: String,
-  publicationLink :: String
+  publicationLink :: Maybe String,
+  publicationDescription :: Maybe String
 }
   deriving (Generic)
 instance FromJSON CVPublication
@@ -109,7 +113,8 @@ instance ToJSON CVPublications
 
 data CVPresentation = CVPresentation {
   presentationTitle :: String,
-  presentationLink :: String,
+  presentationLink :: Maybe String,
+  presentationDescription :: Maybe String,
   presentationVenue :: String,
   presentationDate :: String
 }
@@ -125,7 +130,7 @@ instance ToJSON CVPresentations
 data CVSkill = CVSkill {
   skillName :: String,
   skillLevel :: String,
-  skillKeywords :: [String]
+  skillKeywords :: Maybe [String]
 }
   deriving (Generic)
 instance FromJSON CVSkill
@@ -149,7 +154,7 @@ instance ToJSON CVLanguage
 
 data CVInterest = CVInterest {
   interestName :: String,
-  interestKeywords :: [String]
+  interestKeywords :: Maybe [String]
 }
   deriving (Generic)
 instance FromJSON CVInterest
@@ -157,17 +162,17 @@ instance ToJSON CVInterest
 
 data CVData = CVData { 
   basics :: CVBasics,
-  work :: [CVWork],
-  volunteering :: [CVWork],
-  education :: [CVEducation],
-  awards :: [CVAwards],
-  publications :: CVPublications,
-  presentations :: CVPresentations,
-  skills :: [CVSkill],
-  research :: CVResearch,
-  languages :: [CVLanguage],
-  interests :: [CVInterest]
-  } 
+  work :: Maybe [CVWork],
+  volunteering :: Maybe [CVWork],
+  education :: Maybe [CVEducation],
+  awards :: Maybe [CVAwards],
+  publications :: Maybe CVPublications,
+  presentations :: Maybe CVPresentations,
+  skills :: Maybe [CVSkill],
+  research :: Maybe [CVResearch],
+  languages :: Maybe [CVLanguage],
+  interests :: Maybe [CVInterest]
+} 
   deriving (Generic)
 
 instance FromJSON CVData
