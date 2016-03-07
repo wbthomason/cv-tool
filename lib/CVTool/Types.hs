@@ -9,12 +9,12 @@ import GHC.Generics
 import System.FilePath
 
 data CVLocation = CVLocation {
-  address :: [String],
-  postalCode :: String,
+  address :: Maybe [String],
+  postalCode :: Maybe String,
   city :: String,
   state :: String,
   countryCode :: String,
-  region :: String
+  region :: Maybe String
 }
   deriving (Generic)
 instance FromJSON CVLocation
@@ -35,8 +35,8 @@ data CVBasics = CVBasics {
   pictureLoc :: String,
   email :: String,
   phone :: String,
-  personalSite :: String,
-  personalSummary :: String,
+  personalSite :: Maybe String,
+  objective :: Maybe String,
   location :: CVLocation,
   profiles :: [CVProfile],
   institution :: String,
@@ -47,7 +47,7 @@ instance FromJSON CVBasics
 instance ToJSON CVBasics
 
 data CVWork = CVWork {
-  organization :: String,
+  company :: String,
   position :: String,
   companyWebsite :: String,
   startDate :: String,
@@ -74,6 +74,8 @@ data CVEducation = CVEducation {
   school :: String,
   majors :: [String],
   degree :: String,
+  schoolSite :: String,
+  schoolLocation :: CVLocation,
   studyStartDate :: String,
   studyEndDate :: Maybe String,
   gpa :: Maybe Float,
@@ -138,7 +140,7 @@ instance ToJSON CVSkill
 
 data CVResearch = CVResearch {
   researchTopic :: String,
-  researchDescription :: String
+  researchDescription :: Maybe String
 }
   deriving (Generic)
 instance FromJSON CVResearch
@@ -160,18 +162,27 @@ data CVInterest = CVInterest {
 instance FromJSON CVInterest
 instance ToJSON CVInterest
 
+data CVMembership = CVMembership {
+  role :: String,
+  organization :: String
+}
+  deriving (Generic)
+instance FromJSON CVMembership
+instance ToJSON CVMembership
+
 data CVData = CVData { 
   basics :: CVBasics,
   work :: Maybe [CVWork],
   volunteering :: Maybe [CVWork],
-  education :: Maybe [CVEducation],
+  education :: [CVEducation],
   awards :: Maybe [CVAwards],
   publications :: Maybe CVPublications,
   presentations :: Maybe CVPresentations,
   skills :: Maybe [CVSkill],
   research :: Maybe [CVResearch],
   languages :: Maybe [CVLanguage],
-  interests :: Maybe [CVInterest]
+  interests :: Maybe [CVInterest],
+  memberships :: Maybe [CVMembership]
 } 
   deriving (Generic)
 

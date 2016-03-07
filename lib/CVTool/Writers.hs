@@ -20,4 +20,4 @@ writeJSON = writeText P.writeJSON
 writeMarkdown = writeText P.writeMarkdown
 writeLaTeX = writeText P.writeLaTeX
 writeHtml = writeText P.writeHtmlString
-writePDF template pdfCreator = makePDF pdfCreator P.writeLaTeX (setOptions template)
+writePDF pdfCreator template = makePDF pdfCreator P.writeLaTeX (setOptions template)
