@@ -1,0 +1,444 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Simple LaTeX CV Template %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% NOTE: If you find that it says                                     %%
+%%                                                                    %%
+%%                           1 of ??                                  %%
+%%                                                                    %%
+%% at the bottom of your first page, this means that the AUX file     %%
+%% was not available when you ran LaTeX on this source. Simply RERUN  %%
+%% LaTeX to get the ``??'' replaced with the number of the last page  %%
+%% of the document. The AUX file will be generated on the first run   %%
+%% of LaTeX and used on the second run to fill in all of the          %%
+%% references.                                                        %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Don't like 10pt? Try 11pt or 12pt
+\documentclass[10pt]{article}
+
+% The automated optical recognition software used to digitize resume
+% information works best with fonts that do not have serifs. This
+% command uses a sans serif font throughout. Uncomment both lines (or at
+% least the second) to restore a Roman font (i.e., a font with serifs).
+%\usepackage{times}
+%\renewcommand{\familydefault}{\sfdefault}
+
+% This is a helpful package that puts math inside length specifications
+\usepackage{calc}
+\usepackage{comment}
+%\usepackage{hyperref}
+
+% Simpler bibsection for CV sections
+% (thanks to natbib for inspiration)
+\makeatletter
+\newlength{\bibhang}
+\setlength{\bibhang}{1em} %1em}
+\newlength{\bibsep}
+{\@listi \global\bibsep\itemsep \global\advance\bibsep by\parsep}
+\newenvironment{bibsection}%
+{\begin{enumerate}{}{%
+        %        {\begin{list}{}{%
+        \setlength{\leftmargin}{\bibhang}%
+        \setlength{\itemindent}{-\leftmargin}%
+        \setlength{\itemsep}{\bibsep}%
+        \setlength{\parsep}{\z@}%
+        \setlength{\partopsep}{0pt}%
+    \setlength{\topsep}{0pt}}}
+{\end{enumerate}\vspace{-.6\baselineskip}}
+%        {\end{list}\vspace{-.6\baselineskip}}
+\makeatother
+
+% Layout: Puts the section titles on left side of page
+\reversemarginpar
+
+%
+%         PAPER SIZE, PAGE NUMBER, AND DOCUMENT LAYOUT NOTES:
+%
+% The next \usepackage line changes the layout for CV style section
+% headings as marginal notes. It also sets up the paper size as either
+% letter or A4. By default, letter was used. If A4 paper is desired,
+% comment out the letterpaper lines and uncomment the a4paper lines.
+%
+% As you can see, the margin widths and section title widths can be
+% easily adjusted.
+%
+% ALSO: Notice that the includefoot option can be commented OUT in order
+% to put the PAGE NUMBER *IN* the bottom margin. This will make the
+% effective text area larger.
+%
+% IF YOU WISH TO REMOVE THE ``of LASTPAGE'' next to each page number,
+% see the note about the +LP and -LP lines below. Comment out the +LP
+% and uncomment the -LP.
+%
+% IF YOU WISH TO REMOVE PAGE NUMBERS, be sure that the includefoot line
+% is uncommented and ALSO uncomment the \pagestyle{empty} a few lines
+% below.
+%
+
+%% Use these lines for letter-sized paper
+\usepackage[paper=letterpaper,
+  %includefoot, % Uncomment to put page number above margin
+  marginparwidth=1.2in,     % Length of section titles
+  marginparsep=.05in,       % Space between titles and text
+  margin=0.8in,               % 1 inch margins
+includemp]{geometry}
+
+%% Use these lines for A4-sized paper
+%\usepackage[paper=a4paper,
+%            %includefoot, % Uncomment to put page number above margin
+%            marginparwidth=30.5mm,    % Length of section titles
+%            marginparsep=1.5mm,       % Space between titles and text
+%            margin=25mm,              % 25mm margins
+%            includemp]{geometry}
+
+%% More layout: Get rid of indenting throughout entire document
+\setlength{\parindent}{0in}
+
+\usepackage[shortlabels]{enumitem}
+
+%% Reference the last page in the page number
+%
+% NOTE: comment the +LP line and uncomment the -LP line to have page
+%       numbers without the ``of ##'' last page reference)
+%
+% NOTE: uncomment the \pagestyle{empty} line to get rid of all page
+%       numbers (make sure includefoot is commented out above)
+%
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+%\pagestyle{empty}      % Uncomment this to get rid of page numbers
+\fancyhf{}\renewcommand{\headrulewidth}{0pt}
+\fancyfootoffset{\marginparsep+\marginparwidth}
+\newlength{\footpageshift}
+\setlength{\footpageshift}
+{0.5\textwidth+0.5\marginparsep+0.5\marginparwidth-2in}
+\lfoot{\hspace{\footpageshift}%
+  \parbox{4in}{\, \hfill %
+    %                    \arabic{page} of \protect\pageref*{LastPage} % +LP
+    %\arabic{page}                               % -LP
+\hfill \,}}
+
+% Finally, give us PDF bookmarks
+\usepackage{color,hyperref}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.3}
+\hypersetup{colorlinks,breaklinks,
+  linkcolor=darkblue,urlcolor=darkblue,
+anchorcolor=darkblue,citecolor=darkblue}
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% The title (name) with a horizontal rule under it
+% (optional argument typesets an object right-justified across from name
+%  as well)
+%
+% Usage: \makeheading{name}
+%        OR
+%        \makeheading[right_object]{name}
+%
+% Place at top of document. It should be the first thing.
+% If ``right_object'' is provided in the square-braced optional
+% argument, it will be right justified on the same line as ``name'' at
+% the top of the CV. For example:
+%
+%       \makeheading[\emph{Curriculum vitae}]{Your Name}
+%
+% will put an emphasized ``Curriculum vitae'' at the top of the document
+% as a title. Likewise, a picture could be included:
+%
+%   \makeheading[\includegraphics[height=1.5in]{my_picutre}]{Your Name}
+%
+% the picture will be flush right across from the name.
+\newcommand{\makeheading}[2][]%
+{\hspace*{-\marginparsep minus \marginparwidth}%
+  \begin{minipage}[t]{\textwidth+\marginparwidth+\marginparsep}%
+    {\large \bfseries #2 \hfill #1}\\[-0.15\baselineskip]%
+    \rule{\columnwidth}{1pt}%
+\end{minipage}}
+
+% The section headings
+%
+% Usage: \section{section name}
+\renewcommand{\section}[1]{\pagebreak[3]%
+  \hyphenpenalty=10000%
+  \vspace{1.3\baselineskip}%
+  \phantomsection\addcontentsline{toc}{section}{#1}%
+  \noindent\llap{\scshape\smash{\parbox[t]{\marginparwidth}{\raggedright #1}}}%
+\vspace{-\baselineskip}\par}
+
+% An itemize-style list with lots of space between items
+\newenvironment{outerlist}[1][\enskip\textbullet]%
+        {\begin{itemize}[#1,leftmargin=*]}{\end{itemize}%
+            \vspace{-.6\baselineskip}}
+
+            % An environment IDENTICAL to outerlist that has better pre-list spacing
+            % when used as the first thing in a \section
+            \newenvironment{lonelist}[1][\enskip\textbullet]%
+            {\begin{list}{#1}{%
+                  \setlength{\partopsep}{0pt}%
+              \setlength{\topsep}{0pt}}}
+            {\end{list}\vspace{-.6\baselineskip}}
+
+            % An itemize-style list with little space between items
+            \newenvironment{innerlist}[1][\enskip\textbullet]%
+            {\begin{itemize}[#1,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt]}
+            {\end{itemize}}
+
+            % An environment IDENTICAL to innerlist that has better pre-list spacing
+            % when used as the first thing in a \section
+            \newenvironment{loneinnerlist}[1][\enskip\textbullet]%
+            {\begin{itemize}[#1,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt]}
+            {\end{itemize}\vspace{-.6\baselineskip}}
+
+            % To add some paragraph space between lines.
+            % This also tells LaTeX to preferably break a page on one of these gaps
+            % if there is a needed pagebreak nearby.
+            \newcommand{\blankline}{\quad\pagebreak[3]}
+            \newcommand{\halfblankline}{\quad\vspace{-0.5\baselineskip}\pagebreak[3]}
+
+            % Uses hyperref to link DOI
+            \newcommand\doilink[1]{\href{http://dx.doi.org/#1}{#1}}
+            \newcommand\doi[1]{doi:\doilink{#1}}
+
+            % For \url{SOME_URL}, links SOME_URL to the url SOME_URL
+            \providecommand*\url[1]{\href{#1}{#1}}
+            % Same as above, but pretty-prints SOME_URL in teletype fixed-width font
+            \renewcommand*\url[1]{\href{#1}{\texttt{#1}}}
+
+            % For \email{ADDRESS}, links ADDRESS to the url mailto:ADDRESS
+            \providecommand*\email[1]{\href{mailto:#1}{#1}}
+            % Same as above, but pretty-prints ADDRESS in teletype fixed-width font
+            %\renewcommand*\email[1]{\href{mailto:#1}{\texttt{#1}}}
+
+            %\providecommand\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+            %    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+            %\providecommand\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+            %    \TeX}}
+            \providecommand\BibTeX{{B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+            \TeX}}
+            \providecommand\Matlab{\textsc{Matlab}}
+
+            %%%%%%%%%%%%%%%%%%%%%%%% End Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+            %%%%%%%%%%%%%%%%%%%%%%%%% Begin CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+            \begin{document}
+            \makeheading{$basics.name$}
+
+            \section{Contact Information}
+
+            % NOTE: Mind where the & separators and \\ breaks are in the following
+            %       table.
+            %
+            % ALSO: \rcollength is the width of the right column of the table
+            %       (adjust it to your liking; default is 1.85in).
+            %
+            \newlength{\rcollength}\setlength{\rcollength}{1.4in}%
+            %
+            \begin{tabular}[t]{@{}p{\textwidth-\rcollength}p{\rcollength}}
+              $basics.institution$ & $basic.phone$ \\
+              $basics.department$ & \email{$basics.email$}\\
+              $for(basics.location.address)$
+              $basics.location.address$ &  \\
+              $endfor$
+              $basics.location.city$, $basics.location.state$ $basics.location.postalCode$\\
+              $if(basics.personalSite)$
+              \href{$basics.personalSite$}{\nolinkurl{$basics.personalSite$}}
+              $endif$ & \\
+            \end{tabular}
+
+            $if(basics.objective)$
+              \section{Objective}
+              $basics.objective$
+            $endif$
+            $if(research)$
+            \section{Research Interests}
+            $for(research)$
+            $research.topic$,
+            $endfor$
+            \\
+            $endif$
+
+            \section{Education}
+            $for(education)$
+            \href{$education.schoolSite$}{\textbf{$education.school$}},
+            $education.schoolLocation.city$, $education.schoolLocation.state$
+            \hfill{$education.studyStartDate$ -- $if(education.studyEndDate)$
+            $education.studyEndDate$ $else$ Present $endif$}
+
+            \begin{innerlist}
+              \item[] $education.degree$, $for(education.majors)$
+                $education.majors$$sep$,$endfor$
+                  $if(education.gpa)$\item[] \textbf{GPA:} $education.gpa$ $endif$
+                  $if(education.courses)$
+                  \item[] \textbf{Relevant Courses:} $for(education.courses)$
+                    $if(education.courses.courseMnemonic)$
+                    $education.courses.courseMnemonic$:
+                    $endif$
+                    $education.courses.courseName$
+                    $if(education.courses.yearTaken)$
+                    ($education.courses.yearTaken$)
+                    $endif$ $sep$, $endfor$
+                    $endif$
+              \end{innerlist}
+              $endfor$
+
+              %\section{Publications} 
+
+              %Molly Q Feldman, Sumit Gulwani, Zoran Popovi\'{c}, Erik Andersen. A Dynamic Programming Approach for Synthesis of Grid Programs. \emph{PLDI 2016}, under review. 
+
+              \section{Awards} 
+
+              {\bf{SIGPLAN Travel Grant for PLMW at POPL 2016}} \hfill November 2015
+              \begin{innerlist}
+              \item[]Awarded full funding to attend the Programming Languages Mentoring Workshop at POPL 2016. 
+              \end{innerlist}
+
+
+              {\bf{Heinrich W. Brinkmann Mathematics Prize}} \hfill May 2015
+              \begin{innerlist}
+              \item[]Awarded for ``How to Always Win Every Game: Combinatorial Game Theory and the Sprague-Grundy Theorem" at Swarthmore College. Carries a cash prize and the opportunity for an invited talk.
+              \end{innerlist}
+
+              {\bf{David Baltimore '60/Broad Foundation Endowment Fellowship}}\hfill Summer 2013
+              \begin{innerlist}
+
+              \item[]This fellowship is awarded to a student doing summer research in the natural sciences or engineering.
+              \end{innerlist}
+
+
+
+
+
+              \section{Research Experience}
+
+              \textbf{Graduate Research Assistant} \hfill {August 2015 - present}
+              \begin{innerlist}
+              \item[] Department of Computer Science,\\
+                Cornell University\\
+                \emph{Project:}  ``Diagnosing Students' Misconceptions through Programming-by-Demonstration"\\
+                Advisor: Erik Andersen, Ph.D
+
+              \end{innerlist}
+
+              \textbf{Research Assistant (Summer@ICERM REU)} \hfill {Summer 2014}
+              \begin{innerlist}
+
+              \item[] 
+                \href{http://icerm.brown.edu/summerug_2014/}{Institute for Computational and Experimental Research in Mathematics (ICERM)},\\
+                Brown University\\
+                \emph{Project:} ``Computation and Analysis on Reinhardt Polygons with Multiple Prime Divisors"
+                Advisor: Michael Mossinghoff, Ph.D (Davidson College)
+
+              \end{innerlist} 
+
+              \textbf{Research Assistant} \hfill {Summer 2013}
+              \begin{innerlist}
+
+              \item[] Department of Mathematics,\\
+                Tufts University\\
+                \emph{Project:} ``Numerical Models for the time-dependent Heat and Stokes' Equations"\\
+                Advisors: Scott MacLachlan, Ph.D (Memorial University of Newfoundland) and James Adler, Ph.D. 
+              \end{innerlist}        
+
+
+
+              \section{Teaching Experience}
+              {\bf{Graduate Teaching Asssistant}} \hfill {Fall 2015}
+              \begin{innerlist}
+              \item[] CS 4700: Foundations of Artificial Intelligence \\
+                Instructor: Bart Selman, Ph.D.\\
+                Department of Computer Science, \\
+                Cornell University
+              \end{innerlist}
+
+
+
+
+              %\textbf{Teaching Assistant} \hfill {Springs 2011--12}
+              {\bf{Mathematics Teaching Assistant and Grader}} \hfill {Spring 2015, Fall 2014, Spring 2012}
+              \begin{innerlist}
+              \item[] Honors Multivariable Calculus and Linear Algebra\\
+                Instructors: Charles M. Grinstead, Ph.D and Scott Cook, Ph.D.\\
+                Department of Mathematics \& Statistics,\\
+                Swarthmore College
+              \end{innerlist}
+
+              {\bf{Computer Science Teaching Assistant}} \hfill {Fall 2013 and Fall 2012}
+              \begin{innerlist}
+              \item[]  Data Structures \& Algorithms and Introduction to Computer Science\\
+                Instructors: Ameet Soni, Ph.D, Joshua Brody, Ph.D. and Jeff Knerr, Ph.D. \\
+                Department of Computer Science,\\
+                Swarthmore College
+              \end{innerlist}
+
+              %\section{Awards}
+              %\begin{innerlist}
+              %\item[] {\bf{Heinrich W. Brinkmann Mathematics Prize}} \hfill May 2015
+              %\begin{innerlist}
+              %\item This prize is presented annually by Swarthmore College's Department of Mathematics and Statistic to the student or students who submit the best paper on a mathematical subject. Awarded for ``How to Always Win Every Game: Combinatorial Game Theory and the Sprague-Grundy Theorem." Carries a cash prize and the opportunity for an invited talk.
+              %\end{innerlist}
+              %
+              %
+              %\item[] {\bf{National Science Foundation Research Stipend}} \hfill Summer 2014
+              %\begin{innerlist}
+              %\item Fully funded research assistantship at ICERM, an NSF Research Institute.
+              %\end{innerlist}
+              % 
+              %\item[] {\bf{David Baltimore '60/Broad Foundation Endowment Fellowship}}\hfill Summer 2013
+              %\begin{innerlist}
+              %\item This fellowship is awarded to a student doing summer research in the natural sciences or engineering.
+              %\end{innerlist}
+              %
+              %\end{innerlist}
+
+              \section{Presentations}
+              M.Q. Feldman, R. Kenyon, \& J. Liu. ``Computation and analysis on Reinhardt polygons with multiple distinct prime divisors." Final Presentation, Summer@ICERM, Providence, RI, 6 August 2014.\\
+
+              M.Q. Feldman, L. Laderman \& M.T. Mathay. ``Improving Female Retention in the Physical Sciences." Final Presentation for Statistical Methods (independent research), Swarthmore College, Swarthmore, PA, 12 December 2012. 
+
+
+
+              \section{Memberships}
+              Member, Swarthmore College Chapter, Phi Beta Kappa\\
+              Elected, Swarthmore College Chapter, Sigma Xi\\
+              Member, Association for Computing Machinery (ACM) and ACM-W
+
+              \section{Miscellaneous }
+              \emph{Computational Skills:} Python, C\#, C++, Pyret, Racket, Unix, \LaTeX \\
+              \emph{Personal:} Trained in Modern dance and classical Indian dance (Kathak and Odissi)
+
+
+              \end{document}
+
+              %%%%%%%%%%%%%%%%%%%%%%%%%% End CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+              %----------------------------------------------------------------------%
+              % The following is copyright and licensing information for
+              % redistribution of this LaTeX source code; it also includes a liability
+              % statement. If this source code is not being redistributed to others,
+              % it may be omitted. It has no effect on the function of the above code.
+              %----------------------------------------------------------------------%
+              % Copyright (c) 2007, 2008, 2009, 2010, 2011 by Theodore P. Pavlic
+              %
+              % Unless otherwise expressly stated, this work is licensed under the
+              % Creative Commons Attribution-Noncommercial 3.0 United States License. To
+              % view a copy of this license, visit
+              % http://creativecommons.org/licenses/by-nc/3.0/us/ or send a letter to
+              % Creative Commons, 171 Second Street, Suite 300, San Francisco,
+              % California, 94105, USA.
+              %
+              % THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+              % OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+              % MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+              % IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+              % CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+              % TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+              % SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+              %----------------------------------------------------------------------%
