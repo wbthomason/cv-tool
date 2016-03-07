@@ -289,10 +289,12 @@ anchorcolor=darkblue,citecolor=darkblue}
               \end{innerlist}
               $endfor$
 
-              %\section{Publications} 
-
-              %Molly Q Feldman, Sumit Gulwani, Zoran Popovi\'{c}, Erik Andersen. A Dynamic Programming Approach for Synthesis of Grid Programs. \emph{PLDI 2016}, under review. 
-
+              $if(publications)$
+              \section{Publications} 
+                $for(publications)$
+                  $publications.authors$
+                $endfor$
+              $endif$
               \section{Awards} 
 
               {\bf{SIGPLAN Travel Grant for PLMW at POPL 2016}} \hfill November 2015
