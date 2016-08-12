@@ -1,1 +1,49 @@
-name: Wil Thomason
+basics:
+  name: Johnny Q. Generic
+  label: Thing Doer and Stuff Maker
+  pictureLoc: profile.jpg
+  email: johnnyboy@emailservice.com
+  phone: 1.800.867.4309
+  personalSite: http://google.com
+  objective: I do stuff and occasionally things
+  location:
+    address:
+      - 123 Place Place
+      - Somewhere, Probably
+    postalCode: "12345"
+    city: Madeupville
+    state: AK
+    countryCode: US
+    region: NALA
+  profiles:
+    - network: Twitter
+      username: johnnyboy
+      url: https://twitter.com/johnnyboy
+  institution: The University of Thingness
+  department: Department of Stuff
+education:
+  - school: Cornell University
+    majors: [Computer Science]
+    degree: Ph.D.
+    schoolSite: https://www.cs.cornell.edu
+    schoolLocation:
+      city: 
+      state: NY
+      countryCode: US
+    studyStartDate: August 1999
+    studyEndDate: May 2048
+    gpa: 5.0
+    courses:
+      - courseName: Advanced Algorithms
+        courseMnemonic: CS 6820
+        yearTaken: Fall 2015
+      - courseName: Advanced Machine Learning
+        courseMnemonic: CS 6786
+        yearTaken: Spring 2016
+publications:
+  - publicationType: Conference 
+    publicationDate: 01/01/1999
+    authors: [Wil Thomason, Elvis Presley]
+    publicationVenue: ICRPSFR
+    publicationTitle: Towards a Novel Method for Automating Abstracted Methods 
+    publicationDescription: We make things do stuff rather than actions
