@@ -47,4 +47,4 @@ main = do
   templateData <- readFile template'
   case reader inputData of
         Right pandocData  -> writer templateData pandocData
-        Left err          -> hPutStrLn stderr ("Conversion error:" ++ err) >> exitFailure
+        Left err          -> hPutStrLn stderr ("Conversion error: " ++ err) >> exitFailure

@@ -10,7 +10,7 @@ basics:
     address:
       - 123 Place Place
       - Somewhere, Probably
-    postalCode: "12345"
+    postalCode: 12345
     city: Madeupville
     state: AK
     countryCode: US
@@ -23,11 +23,11 @@ basics:
   department: Department of Stuff
 education:
   - school: Cornell University
-    majors: [Computer Science]
+    majors: [Computer Science, Math]
     degree: Ph.D.
     schoolSite: https://www.cs.cornell.edu
     schoolLocation:
-      city: 
+      city: Ithaca
       state: NY
       countryCode: US
     studyStartDate: August 1999
@@ -43,7 +43,7 @@ education:
 publications:
   - publicationType: Conference 
     publicationDate: 01/01/1999
-    authors: [Wil Thomason, Elvis Presley]
+    authors: [Wil Thomason, Elvis Presley, George Bush]
     publicationVenue: ICRPSFR
     publicationTitle: Towards a Novel Method for Automating Abstracted Methods 
     publicationDescription: We make things do stuff rather than actions

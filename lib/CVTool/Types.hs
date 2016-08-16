@@ -1,16 +1,32 @@
 {-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE OverloadedStrings #-}
 module CVTool.Types where 
 
+import Control.Applicative
+
 import Data.Aeson
+import Data.Scientific (FPFormat(Fixed), formatScientific)
 import Data.Time
+import Data.Text (unpack)
+import qualified Data.Vector as V
 
 import GHC.Generics
 
 import System.FilePath
 
+data PostalCode = PostalCode String
+  deriving (Generic)
+instance FromJSON PostalCode where
+  parseJSON s = PostalCode
+    <$> 
+      ((withText "String" (\x -> return $ unpack x) s) 
+      <|> 
+      (withScientific "Integer" (\x -> return $ formatScientific Fixed (Just 0) x) s))
+instance ToJSON PostalCode
+
 data CVLocation = CVLocation {
   address :: Maybe [String],
-  postalCode :: Maybe String,
+  postalCode :: Maybe PostalCode,
   city :: String,
   state :: String,
   countryCode :: String,
@@ -31,7 +47,7 @@ instance ToJSON CVProfile
 
 data CVBasics = CVBasics {
   name :: String,
-  label :: String,
+  label :: Maybe String,
   pictureLoc :: String,
   email :: String,
   phone :: String,
@@ -108,9 +124,10 @@ data CVPublication = CVPublication {
 instance FromJSON CVPublication
 instance ToJSON CVPublication
 
-data CVPublications = CVPublicationFile FilePath | CVPublicationList [CVPublication]
+data CVPublications = CVPublicationList [CVPublication] | CVPublicationFile FilePath 
   deriving (Generic)
-instance FromJSON CVPublications
+instance FromJSON CVPublications where
+  parseJSON v = (CVPublicationList <$> (withArray "List" (\x -> mapM parseJSON (V.toList x)) v)) <|> (CVPublicationFile <$> (withText "String" (\x -> return $ unpack x) v))
 instance ToJSON CVPublications
 
 data CVPresentation = CVPresentation {

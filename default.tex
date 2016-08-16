@@ -291,30 +291,17 @@ anchorcolor=darkblue,citecolor=darkblue}
 
               $if(publications)$
               \section{Publications} 
-                $for(publications)$
-                  $publications.authors$
+                $for(publications.contents)$
+                $publications.contents.publicationType$
+                  $for(publications.contents.authors)$
+                    $publications.contents.authors$$sep$,
+                  $endfor$
                 $endfor$
               $endif$
+
               \section{Awards} 
 
-              {\bf{SIGPLAN Travel Grant for PLMW at POPL 2016}} \hfill November 2015
-              \begin{innerlist}
-              \item[]Awarded full funding to attend the Programming Languages Mentoring Workshop at POPL 2016. 
-              \end{innerlist}
-
-
-              {\bf{Heinrich W. Brinkmann Mathematics Prize}} \hfill May 2015
-              \begin{innerlist}
-              \item[]Awarded for ``How to Always Win Every Game: Combinatorial Game Theory and the Sprague-Grundy Theorem" at Swarthmore College. Carries a cash prize and the opportunity for an invited talk.
-              \end{innerlist}
-
-              {\bf{David Baltimore '60/Broad Foundation Endowment Fellowship}}\hfill Summer 2013
-              \begin{innerlist}
-
-              \item[]This fellowship is awarded to a student doing summer research in the natural sciences or engineering.
-              \end{innerlist}
-
-
+              \textbf{TODOT}
 
 
 

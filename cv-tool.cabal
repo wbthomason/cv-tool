@@ -18,6 +18,7 @@ library
   exposed-modules:     CVTool.Readers, CVTool.Writers, CVTool.Options, CVTool.Types
   build-depends:       base >= 4.7 && < 5,
                        aeson,
+                       aeson-better-errors,
                        yaml,
                        htoml,
                        pandoc,
@@ -40,6 +41,7 @@ executable cv-tool
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base,
                        cv-tool,
+                       aeson-better-errors,
                        filepath,
                        bytestring,
                        text
