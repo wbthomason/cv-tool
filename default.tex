@@ -41,13 +41,13 @@
 {\@listi \global\bibsep\itemsep \global\advance\bibsep by\parsep}
 \newenvironment{bibsection}%
 {\begin{enumerate}{}{%
-        %        {\begin{list}{}{%
-        \setlength{\leftmargin}{\bibhang}%
-        \setlength{\itemindent}{-\leftmargin}%
-        \setlength{\itemsep}{\bibsep}%
-        \setlength{\parsep}{\z@}%
-        \setlength{\partopsep}{0pt}%
-    \setlength{\topsep}{0pt}}}
+      %        {\begin{list}{}{%
+      \setlength{\leftmargin}{\bibhang}%
+      \setlength{\itemindent}{-\leftmargin}%
+      \setlength{\itemsep}{\bibsep}%
+      \setlength{\parsep}{\z@}%
+      \setlength{\partopsep}{0pt}%
+  \setlength{\topsep}{0pt}}}
 {\end{enumerate}\vspace{-.6\baselineskip}}
 %        {\end{list}\vspace{-.6\baselineskip}}
 \makeatother
@@ -175,259 +175,271 @@ anchorcolor=darkblue,citecolor=darkblue}
 % An itemize-style list with lots of space between items
 \newenvironment{outerlist}[1][\enskip\textbullet]%
         {\begin{itemize}[#1,leftmargin=*]}{\end{itemize}%
-            \vspace{-.6\baselineskip}}
+          \vspace{-.6\baselineskip}}
 
-            % An environment IDENTICAL to outerlist that has better pre-list spacing
-            % when used as the first thing in a \section
-            \newenvironment{lonelist}[1][\enskip\textbullet]%
-            {\begin{list}{#1}{%
-                  \setlength{\partopsep}{0pt}%
-              \setlength{\topsep}{0pt}}}
-            {\end{list}\vspace{-.6\baselineskip}}
+          % An environment IDENTICAL to outerlist that has better pre-list spacing
+          % when used as the first thing in a \section
+          \newenvironment{lonelist}[1][\enskip\textbullet]%
+          {\begin{list}{#1}{%
+                \setlength{\partopsep}{0pt}%
+            \setlength{\topsep}{0pt}}}
+          {\end{list}\vspace{-.6\baselineskip}}
 
-            % An itemize-style list with little space between items
-            \newenvironment{innerlist}[1][\enskip\textbullet]%
-            {\begin{itemize}[#1,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt]}
-            {\end{itemize}}
+          % An itemize-style list with little space between items
+          \newenvironment{innerlist}[1][\enskip\textbullet]%
+          {\begin{itemize}[#1,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt]}
+          {\end{itemize}}
 
-            % An environment IDENTICAL to innerlist that has better pre-list spacing
-            % when used as the first thing in a \section
-            \newenvironment{loneinnerlist}[1][\enskip\textbullet]%
-            {\begin{itemize}[#1,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt]}
-            {\end{itemize}\vspace{-.6\baselineskip}}
+          % An environment IDENTICAL to innerlist that has better pre-list spacing
+          % when used as the first thing in a \section
+          \newenvironment{loneinnerlist}[1][\enskip\textbullet]%
+          {\begin{itemize}[#1,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt]}
+          {\end{itemize}\vspace{-.6\baselineskip}}
 
-            % To add some paragraph space between lines.
-            % This also tells LaTeX to preferably break a page on one of these gaps
-            % if there is a needed pagebreak nearby.
-            \newcommand{\blankline}{\quad\pagebreak[3]}
-            \newcommand{\halfblankline}{\quad\vspace{-0.5\baselineskip}\pagebreak[3]}
+          % To add some paragraph space between lines.
+          % This also tells LaTeX to preferably break a page on one of these gaps
+          % if there is a needed pagebreak nearby.
+          \newcommand{\blankline}{\quad\pagebreak[3]}
+          \newcommand{\halfblankline}{\quad\vspace{-0.5\baselineskip}\pagebreak[3]}
 
-            % Uses hyperref to link DOI
-            \newcommand\doilink[1]{\href{http://dx.doi.org/#1}{#1}}
-            \newcommand\doi[1]{doi:\doilink{#1}}
+          % Uses hyperref to link DOI
+          \newcommand\doilink[1]{\href{http://dx.doi.org/#1}{#1}}
+          \newcommand\doi[1]{doi:\doilink{#1}}
 
-            % For \url{SOME_URL}, links SOME_URL to the url SOME_URL
-            \providecommand*\url[1]{\href{#1}{#1}}
-            % Same as above, but pretty-prints SOME_URL in teletype fixed-width font
-            \renewcommand*\url[1]{\href{#1}{\texttt{#1}}}
+          % For \url{SOME_URL}, links SOME_URL to the url SOME_URL
+          \providecommand*\url[1]{\href{#1}{#1}}
+          % Same as above, but pretty-prints SOME_URL in teletype fixed-width font
+          \renewcommand*\url[1]{\href{#1}{\texttt{#1}}}
 
-            % For \email{ADDRESS}, links ADDRESS to the url mailto:ADDRESS
-            \providecommand*\email[1]{\href{mailto:#1}{#1}}
-            % Same as above, but pretty-prints ADDRESS in teletype fixed-width font
-            %\renewcommand*\email[1]{\href{mailto:#1}{\texttt{#1}}}
+          % For \email{ADDRESS}, links ADDRESS to the url mailto:ADDRESS
+          \providecommand*\email[1]{\href{mailto:#1}{#1}}
+          % Same as above, but pretty-prints ADDRESS in teletype fixed-width font
+          %\renewcommand*\email[1]{\href{mailto:#1}{\texttt{#1}}}
 
-            %\providecommand\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
-            %    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
-            %\providecommand\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
-            %    \TeX}}
-            \providecommand\BibTeX{{B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
-            \TeX}}
-            \providecommand\Matlab{\textsc{Matlab}}
+          %\providecommand\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+          %    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+          %\providecommand\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+          %    \TeX}}
+          \providecommand\BibTeX{{B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+          \TeX}}
+          \providecommand\Matlab{\textsc{Matlab}}
 
-            %%%%%%%%%%%%%%%%%%%%%%%% End Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%
+          %%%%%%%%%%%%%%%%%%%%%%%% End Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-            %%%%%%%%%%%%%%%%%%%%%%%%% Begin CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+          %%%%%%%%%%%%%%%%%%%%%%%%% Begin CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-            \begin{document}
-            \makeheading{$basics.name$}
+          \begin{document}
+          \makeheading{$basics.name$}
 
-            \section{Contact Information}
+          \section{Contact Information}
 
-            % NOTE: Mind where the & separators and \\ breaks are in the following
-            %       table.
-            %
-            % ALSO: \rcollength is the width of the right column of the table
-            %       (adjust it to your liking; default is 1.85in).
-            %
-            \newlength{\rcollength}\setlength{\rcollength}{1.4in}%
-            %
-            \begin{tabular}[t]{@{}p{\textwidth-\rcollength}p{\rcollength}}
-              $basics.institution$ & $basic.phone$ \\
-              $basics.department$ & \email{$basics.email$}\\
-              $for(basics.location.address)$
-              $basics.location.address$ &  \\
-              $endfor$
-              $basics.location.city$, $basics.location.state$ $basics.location.postalCode$\\
-              $if(basics.personalSite)$
-              \href{$basics.personalSite$}{\nolinkurl{$basics.personalSite$}}
-              $endif$ & \\
-            \end{tabular}
-
-            $if(basics.objective)$
-              \section{Objective}
-              $basics.objective$
-            $endif$
-            $if(research)$
-            \section{Research Interests}
-            $for(research)$
-            $research.topic$,
+          % NOTE: Mind where the & separators and \\ breaks are in the following
+          %       table.
+          %
+          % ALSO: \rcollength is the width of the right column of the table
+          %       (adjust it to your liking; default is 1.85in).
+          %
+          \newlength{\rcollength}\setlength{\rcollength}{1.4in}%
+          %
+          \begin{tabular}[t]{@{}p{\textwidth-\rcollength}p{\rcollength}}
+            $basics.institution$ & $basic.phone$ \\
+            $basics.department$ & \email{$basics.email$}\\
+            $for(basics.location.address)$
+            $basics.location.address$ &  \\
             $endfor$
-            \\
+            $basics.location.city$, $basics.location.state$ $basics.location.postalCode$\\
+            $if(basics.personalSite)$
+            \href{$basics.personalSite$}{\nolinkurl{$basics.personalSite$}}
+            $endif$ & \\
+          \end{tabular}
+
+          $if(basics.objective)$
+          \section{Objective}
+          $basics.objective$
+          $endif$
+          $if(research)$
+          \section{Research Interests}
+          $for(research)$
+          $research.topic$,
+          $endfor$
+          \\
+          $endif$
+
+          \section{Education}
+          $for(education)$
+          \href{$education.schoolSite$}{\textbf{$education.school$}},
+          $education.schoolLocation.city$, $education.schoolLocation.state$
+          \hfill{$education.studyStartDate$ -- $if(education.studyEndDate)$
+          $education.studyEndDate$ $else$ Present $endif$}
+
+          \begin{innerlist}
+          \item[] $education.degree$, $for(education.majors)$
+            $education.majors$$sep$,$endfor$
+            $if(education.gpa)$\item[] \textbf{GPA:} $education.gpa$ $endif$
+            $if(education.courses)$
+          \item[] \textbf{Relevant Courses:} $for(education.courses)$
+            $if(education.courses.courseMnemonic)$
+            $education.courses.courseMnemonic$:
             $endif$
+            $education.courses.courseName$
+            $if(education.courses.yearTaken)$
+            ($education.courses.yearTaken$)
+            $endif$ $sep$, $endfor$
+            $endif$
+          \end{innerlist}
+          $endfor$
 
-            \section{Education}
-            $for(education)$
-            \href{$education.schoolSite$}{\textbf{$education.school$}},
-            $education.schoolLocation.city$, $education.schoolLocation.state$
-            \hfill{$education.studyStartDate$ -- $if(education.studyEndDate)$
-            $education.studyEndDate$ $else$ Present $endif$}
+          $if(publications)$
+          \section{Publications} 
+          $for(publications.contents)$
+          $for(publications.contents.authors)$
+          $publications.contents.authors$$sep$,
+          $endfor$. ($publications.contents.publicationYear$). $publications.contents.publicationTitle$.
+          \emph{$publications.contents.publicationVenue$}
+          $if(publications.contents.publicationDescription)$
+          \begin{innerlist}
+          \item[]$publications.contents.publicationDescription$
+          \end{innerlist}
+          $endif$
+          $endfor$
+          $endif$
+          \hphantom{}
 
-            \begin{innerlist}
-              \item[] $education.degree$, $for(education.majors)$
-                $education.majors$$sep$,$endfor$
-                  $if(education.gpa)$\item[] \textbf{GPA:} $education.gpa$ $endif$
-                  $if(education.courses)$
-                  \item[] \textbf{Relevant Courses:} $for(education.courses)$
-                    $if(education.courses.courseMnemonic)$
-                    $education.courses.courseMnemonic$:
-                    $endif$
-                    $education.courses.courseName$
-                    $if(education.courses.yearTaken)$
-                    ($education.courses.yearTaken$)
-                    $endif$ $sep$, $endfor$
-                    $endif$
-              \end{innerlist}
-              $endfor$
+          $if(awards)$
+          \section{Awards} 
+          $for(awards)$
+          \textbf{$awards.awardName$} \hfill $awards.awarder$, $awards.dateAwarded$
+          $if(awards.awardSummary)$
+          \begin{innerlist}
+          \item[]$awards.awardSummary$
+          \end{innerlist}
+          $endif$
+          $endfor$
+          $endif$
 
-              $if(publications)$
-              \section{Publications} 
-                $for(publications.contents)$
-                $publications.contents.publicationType$
-                  $for(publications.contents.authors)$
-                    $publications.contents.authors$$sep$,
-                  $endfor$
-                $endfor$
-              $endif$
+          \section{Research Experience}
 
-              \section{Awards} 
+          \textbf{Graduate Research Assistant} \hfill {August 2015 - present}
+          \begin{innerlist}
+          \item[] Department of Computer Science,\\
+            Cornell University\\
+            \emph{Project:}  ``Diagnosing Students' Misconceptions through Programming-by-Demonstration"\\
+            Advisor: Erik Andersen, Ph.D
 
-              \textbf{TODOT}
+          \end{innerlist}
 
+          \textbf{Research Assistant (Summer@ICERM REU)} \hfill {Summer 2014}
+          \begin{innerlist}
 
+          \item[] 
+            \href{http://icerm.brown.edu/summerug_2014/}{Institute for Computational and Experimental Research in Mathematics (ICERM)},\\
+            Brown University\\
+            \emph{Project:} ``Computation and Analysis on Reinhardt Polygons with Multiple Prime Divisors"
+            Advisor: Michael Mossinghoff, Ph.D (Davidson College)
 
-              \section{Research Experience}
+          \end{innerlist} 
 
-              \textbf{Graduate Research Assistant} \hfill {August 2015 - present}
-              \begin{innerlist}
-              \item[] Department of Computer Science,\\
-                Cornell University\\
-                \emph{Project:}  ``Diagnosing Students' Misconceptions through Programming-by-Demonstration"\\
-                Advisor: Erik Andersen, Ph.D
+          \textbf{Research Assistant} \hfill {Summer 2013}
+          \begin{innerlist}
 
-              \end{innerlist}
-
-              \textbf{Research Assistant (Summer@ICERM REU)} \hfill {Summer 2014}
-              \begin{innerlist}
-
-              \item[] 
-                \href{http://icerm.brown.edu/summerug_2014/}{Institute for Computational and Experimental Research in Mathematics (ICERM)},\\
-                Brown University\\
-                \emph{Project:} ``Computation and Analysis on Reinhardt Polygons with Multiple Prime Divisors"
-                Advisor: Michael Mossinghoff, Ph.D (Davidson College)
-
-              \end{innerlist} 
-
-              \textbf{Research Assistant} \hfill {Summer 2013}
-              \begin{innerlist}
-
-              \item[] Department of Mathematics,\\
-                Tufts University\\
-                \emph{Project:} ``Numerical Models for the time-dependent Heat and Stokes' Equations"\\
-                Advisors: Scott MacLachlan, Ph.D (Memorial University of Newfoundland) and James Adler, Ph.D. 
-              \end{innerlist}        
+          \item[] Department of Mathematics,\\
+            Tufts University\\
+            \emph{Project:} ``Numerical Models for the time-dependent Heat and Stokes' Equations"\\
+            Advisors: Scott MacLachlan, Ph.D (Memorial University of Newfoundland) and James Adler, Ph.D. 
+          \end{innerlist}        
 
 
 
-              \section{Teaching Experience}
-              {\bf{Graduate Teaching Asssistant}} \hfill {Fall 2015}
-              \begin{innerlist}
-              \item[] CS 4700: Foundations of Artificial Intelligence \\
-                Instructor: Bart Selman, Ph.D.\\
-                Department of Computer Science, \\
-                Cornell University
-              \end{innerlist}
+          \section{Teaching Experience}
+          {\bf{Graduate Teaching Asssistant}} \hfill {Fall 2015}
+          \begin{innerlist}
+          \item[] CS 4700: Foundations of Artificial Intelligence \\
+            Instructor: Bart Selman, Ph.D.\\
+            Department of Computer Science, \\
+            Cornell University
+          \end{innerlist}
 
 
 
 
-              %\textbf{Teaching Assistant} \hfill {Springs 2011--12}
-              {\bf{Mathematics Teaching Assistant and Grader}} \hfill {Spring 2015, Fall 2014, Spring 2012}
-              \begin{innerlist}
-              \item[] Honors Multivariable Calculus and Linear Algebra\\
-                Instructors: Charles M. Grinstead, Ph.D and Scott Cook, Ph.D.\\
-                Department of Mathematics \& Statistics,\\
-                Swarthmore College
-              \end{innerlist}
+          %\textbf{Teaching Assistant} \hfill {Springs 2011--12}
+          {\bf{Mathematics Teaching Assistant and Grader}} \hfill {Spring 2015, Fall 2014, Spring 2012}
+          \begin{innerlist}
+          \item[] Honors Multivariable Calculus and Linear Algebra\\
+            Instructors: Charles M. Grinstead, Ph.D and Scott Cook, Ph.D.\\
+            Department of Mathematics \& Statistics,\\
+            Swarthmore College
+          \end{innerlist}
 
-              {\bf{Computer Science Teaching Assistant}} \hfill {Fall 2013 and Fall 2012}
-              \begin{innerlist}
-              \item[]  Data Structures \& Algorithms and Introduction to Computer Science\\
-                Instructors: Ameet Soni, Ph.D, Joshua Brody, Ph.D. and Jeff Knerr, Ph.D. \\
-                Department of Computer Science,\\
-                Swarthmore College
-              \end{innerlist}
+          {\bf{Computer Science Teaching Assistant}} \hfill {Fall 2013 and Fall 2012}
+          \begin{innerlist}
+          \item[]  Data Structures \& Algorithms and Introduction to Computer Science\\
+            Instructors: Ameet Soni, Ph.D, Joshua Brody, Ph.D. and Jeff Knerr, Ph.D. \\
+            Department of Computer Science,\\
+            Swarthmore College
+          \end{innerlist}
 
-              %\section{Awards}
-              %\begin{innerlist}
-              %\item[] {\bf{Heinrich W. Brinkmann Mathematics Prize}} \hfill May 2015
-              %\begin{innerlist}
-              %\item This prize is presented annually by Swarthmore College's Department of Mathematics and Statistic to the student or students who submit the best paper on a mathematical subject. Awarded for ``How to Always Win Every Game: Combinatorial Game Theory and the Sprague-Grundy Theorem." Carries a cash prize and the opportunity for an invited talk.
-              %\end{innerlist}
-              %
-              %
-              %\item[] {\bf{National Science Foundation Research Stipend}} \hfill Summer 2014
-              %\begin{innerlist}
-              %\item Fully funded research assistantship at ICERM, an NSF Research Institute.
-              %\end{innerlist}
-              % 
-              %\item[] {\bf{David Baltimore '60/Broad Foundation Endowment Fellowship}}\hfill Summer 2013
-              %\begin{innerlist}
-              %\item This fellowship is awarded to a student doing summer research in the natural sciences or engineering.
-              %\end{innerlist}
-              %
-              %\end{innerlist}
+          %\section{Awards}
+          %\begin{innerlist}
+          %\item[] {\bf{Heinrich W. Brinkmann Mathematics Prize}} \hfill May 2015
+          %\begin{innerlist}
+          %\item This prize is presented annually by Swarthmore College's Department of Mathematics and Statistic to the student or students who submit the best paper on a mathematical subject. Awarded for ``How to Always Win Every Game: Combinatorial Game Theory and the Sprague-Grundy Theorem." Carries a cash prize and the opportunity for an invited talk.
+          %\end{innerlist}
+          %
+          %
+          %\item[] {\bf{National Science Foundation Research Stipend}} \hfill Summer 2014
+          %\begin{innerlist}
+          %\item Fully funded research assistantship at ICERM, an NSF Research Institute.
+          %\end{innerlist}
+          % 
+          %\item[] {\bf{David Baltimore '60/Broad Foundation Endowment Fellowship}}\hfill Summer 2013
+          %\begin{innerlist}
+          %\item This fellowship is awarded to a student doing summer research in the natural sciences or engineering.
+          %\end{innerlist}
+          %
+          %\end{innerlist}
 
-              \section{Presentations}
-              M.Q. Feldman, R. Kenyon, \& J. Liu. ``Computation and analysis on Reinhardt polygons with multiple distinct prime divisors." Final Presentation, Summer@ICERM, Providence, RI, 6 August 2014.\\
+          \section{Presentations}
+          M.Q. Feldman, R. Kenyon, \& J. Liu. ``Computation and analysis on Reinhardt polygons with multiple distinct prime divisors." Final Presentation, Summer@ICERM, Providence, RI, 6 August 2014.\\
 
-              M.Q. Feldman, L. Laderman \& M.T. Mathay. ``Improving Female Retention in the Physical Sciences." Final Presentation for Statistical Methods (independent research), Swarthmore College, Swarthmore, PA, 12 December 2012. 
-
-
-
-              \section{Memberships}
-              Member, Swarthmore College Chapter, Phi Beta Kappa\\
-              Elected, Swarthmore College Chapter, Sigma Xi\\
-              Member, Association for Computing Machinery (ACM) and ACM-W
-
-              \section{Miscellaneous }
-              \emph{Computational Skills:} Python, C\#, C++, Pyret, Racket, Unix, \LaTeX \\
-              \emph{Personal:} Trained in Modern dance and classical Indian dance (Kathak and Odissi)
+          M.Q. Feldman, L. Laderman \& M.T. Mathay. ``Improving Female Retention in the Physical Sciences." Final Presentation for Statistical Methods (independent research), Swarthmore College, Swarthmore, PA, 12 December 2012. 
 
 
-              \end{document}
 
-              %%%%%%%%%%%%%%%%%%%%%%%%%% End CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+          \section{Memberships}
+          Member, Swarthmore College Chapter, Phi Beta Kappa\\
+          Elected, Swarthmore College Chapter, Sigma Xi\\
+          Member, Association for Computing Machinery (ACM) and ACM-W
 
-              %----------------------------------------------------------------------%
-              % The following is copyright and licensing information for
-              % redistribution of this LaTeX source code; it also includes a liability
-              % statement. If this source code is not being redistributed to others,
-              % it may be omitted. It has no effect on the function of the above code.
-              %----------------------------------------------------------------------%
-              % Copyright (c) 2007, 2008, 2009, 2010, 2011 by Theodore P. Pavlic
-              %
-              % Unless otherwise expressly stated, this work is licensed under the
-              % Creative Commons Attribution-Noncommercial 3.0 United States License. To
-              % view a copy of this license, visit
-              % http://creativecommons.org/licenses/by-nc/3.0/us/ or send a letter to
-              % Creative Commons, 171 Second Street, Suite 300, San Francisco,
-              % California, 94105, USA.
-              %
-              % THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-              % OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-              % MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-              % IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-              % CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-              % TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-              % SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-              %----------------------------------------------------------------------%
+          \section{Miscellaneous }
+          \emph{Computational Skills:} Python, C\#, C++, Pyret, Racket, Unix, \LaTeX \\
+          \emph{Personal:} Trained in Modern dance and classical Indian dance (Kathak and Odissi)
+
+
+          \end{document}
+
+          %%%%%%%%%%%%%%%%%%%%%%%%%% End CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+          %----------------------------------------------------------------------%
+          % The following is copyright and licensing information for
+          % redistribution of this LaTeX source code; it also includes a liability
+          % statement. If this source code is not being redistributed to others,
+          % it may be omitted. It has no effect on the function of the above code.
+          %----------------------------------------------------------------------%
+          % Copyright (c) 2007, 2008, 2009, 2010, 2011 by Theodore P. Pavlic
+          %
+          % Unless otherwise expressly stated, this work is licensed under the
+          % Creative Commons Attribution-Noncommercial 3.0 United States License. To
+          % view a copy of this license, visit
+          % http://creativecommons.org/licenses/by-nc/3.0/us/ or send a letter to
+          % Creative Commons, 171 Second Street, Suite 300, San Francisco,
+          % California, 94105, USA.
+          %
+          % THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+          % OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+          % MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+          % IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+          % CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+          % TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+          % SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+          %----------------------------------------------------------------------%

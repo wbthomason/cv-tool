@@ -14,19 +14,19 @@ import GHC.Generics
 
 import System.FilePath
 
-data PostalCode = PostalCode String
+data EitherStringNum = EitherStringNum String
   deriving (Generic)
-instance FromJSON PostalCode where
-  parseJSON s = PostalCode
+instance FromJSON EitherStringNum where
+  parseJSON s = EitherStringNum
     <$> 
       ((withText "String" (\x -> return $ unpack x) s) 
       <|> 
       (withScientific "Integer" (\x -> return $ formatScientific Fixed (Just 0) x) s))
-instance ToJSON PostalCode
+instance ToJSON EitherStringNum
 
 data CVLocation = CVLocation {
   address :: Maybe [String],
-  postalCode :: Maybe PostalCode,
+  postalCode :: Maybe EitherStringNum,
   city :: String,
   state :: String,
   countryCode :: String,
@@ -113,7 +113,7 @@ instance ToJSON CVAwards
 
 data CVPublication = CVPublication {
   publicationType :: String,
-  publicationDate :: String,
+  publicationYear :: EitherStringNum,
   authors :: [String],
   publicationVenue :: String,
   publicationTitle :: String,

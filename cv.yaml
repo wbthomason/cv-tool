@@ -42,8 +42,13 @@ education:
         yearTaken: Spring 2016
 publications:
   - publicationType: Conference 
-    publicationDate: 01/01/1999
+    publicationYear: 1999
     authors: [Wil Thomason, Elvis Presley, George Bush]
     publicationVenue: ICRPSFR
     publicationTitle: Towards a Novel Method for Automating Abstracted Methods 
     publicationDescription: We make things do stuff rather than actions
+awards:
+  - awardName: Best Fooer of Bars
+    dateAwarded: March of 1944
+    awarder: Theodore Roosevelt's ghost
+    awardSummary: I fooed the most bars the best
