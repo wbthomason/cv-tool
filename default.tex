@@ -392,10 +392,23 @@ anchorcolor=darkblue,citecolor=darkblue}
 
           $if(languages)$
           \section{Languages}
+          $for(languages)$
+          $languages.language$$if(languages.fluency)$ \emph{(Fluency: $languages.fluency$)}$endif$
+          $sep$\\$endfor$
           $endif$
 
           $if(volunteering)$
           \section{Volunteering}
+          $for(volunteering)$
+          \textbf{$volunteering.position$ at $volunteering.company$}\hfill $volunteering.startDate$ - $volunteering.endDate$\\
+          $volunteering.volunteeringSummary$
+          \begin{itemize}
+            \setlength\itemsep{0em}
+            $for(volunteering.highlights)$
+            \item $volunteering.highlights$
+            $endfor$
+          \end{itemize}
+            $sep$\bigskip$endfor$
           $endif$
 
           \end{document}

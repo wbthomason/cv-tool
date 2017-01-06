@@ -176,7 +176,7 @@ instance ToJSON CVTeaching
 
 data CVLanguage = CVLanguage {
   language :: String,
-  fluency :: String
+  fluency :: Maybe String
 }
   deriving (Generic)
 instance FromJSON CVLanguage
