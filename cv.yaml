@@ -119,3 +119,14 @@ skills:
   - skillName: Python
   - skillName: Dance
     skillLevel: Expert
+languages:
+  - language: Russian
+    fluency: Very
+volunteering:
+  - company: Homes Against Humanity
+    position: Worker
+    companyWebsite: www.hah.com
+    startDate: Always
+    endDate: Never
+    workSummary: Helped make homes actively designed to collapse
+    highlights: [Used a hammer, met a dog]

@@ -30,6 +30,7 @@
 % This is a helpful package that puts math inside length specifications
 \usepackage{calc}
 \usepackage{comment}
+\usepackage[utf8]{inputenc}
 %\usepackage{hyperref}
 
 % Simpler bibsection for CV sections
@@ -400,8 +401,8 @@ anchorcolor=darkblue,citecolor=darkblue}
           $if(volunteering)$
           \section{Volunteering}
           $for(volunteering)$
-          \textbf{$volunteering.position$ at $volunteering.company$}\hfill $volunteering.startDate$ - $volunteering.endDate$\\
-          $volunteering.volunteeringSummary$
+          \textbf{$volunteering.company$}\hfill $volunteering.startDate$ - $volunteering.endDate$\\
+          $volunteering.workSummary$
           \begin{itemize}
             \setlength\itemsep{0em}
             $for(volunteering.highlights)$
