@@ -1,5 +1,5 @@
 # cv-tool
-A simple tool for easily building academic CVs in LaTeX from {YAML, Toml, JSON} and bibtex data
+A simple tool for easily building academic CVs in LaTeX from {YAML, Toml, JSON} and bibtex data.
 
 ## About
 `cv-tool` is designed to make it easy to record the information which should go in an academic CV
