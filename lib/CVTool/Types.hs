@@ -153,9 +153,10 @@ instance FromJSON CVSkill
 instance ToJSON CVSkill
 
 data CVResearch = CVResearch {
-  researchTopic :: String,
+  researchName :: String,
   researchWhen :: String,
-  researchDescription :: Maybe String
+  researchDescription :: Maybe String,
+  researchWhere :: String
 }
   deriving (Generic)
 instance FromJSON CVResearch

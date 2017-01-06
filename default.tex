@@ -257,10 +257,10 @@ anchorcolor=darkblue,citecolor=darkblue}
           \section{Objective}
           $basics.objective$
           $endif$
-          $if(research)$
+          $if(interests)$
           \section{Research Interests}
-          $for(research)$
-          $research.topic$,
+          $for(interests)$
+          $interests.topic$,
           $endfor$
           \\
           $endif$
@@ -283,30 +283,30 @@ anchorcolor=darkblue,citecolor=darkblue}
             $endif$
             $education.courses.courseName$
             $if(education.courses.yearTaken)$
-            ($education.courses.yearTaken$)
-            $endif$ $sep$, $endfor$
+            ($education.courses.yearTaken$)$endif$$sep$,$endfor$
             $endif$
           \end{innerlist}
           $endfor$
 
           $if(publications)$
-          \section{Publications} 
+          \section{Publications}
           $for(publications.contents)$
-          $for(publications.contents.authors)$
-          $publications.contents.authors$$sep$,
-          $endfor$. ($publications.contents.publicationYear$). $publications.contents.publicationTitle$.
+          \textbf{$publications.contents.publicationTitle$.}
           \emph{$publications.contents.publicationVenue$}
-          $if(publications.contents.publicationDescription)$
+          ($publications.contents.publicationYear$)
           \begin{innerlist}
+          \item[]$for(publications.contents.authors)$
+          $publications.contents.authors$$sep$,
+          $endfor$.
+          $if(publications.contents.publicationDescription)$
           \item[]$publications.contents.publicationDescription$
-          \end{innerlist}
           $endif$
+        \end{innerlist}
           $endfor$
           $endif$
-          \hphantom{}
 
           $if(awards)$
-          \section{Awards} 
+          \section{Awards}
           $for(awards)$
           \textbf{$awards.awardName$} \hfill $awards.awarder$, $awards.dateAwarded$
           $if(awards.awardSummary)$
@@ -317,38 +317,17 @@ anchorcolor=darkblue,citecolor=darkblue}
           $endfor$
           $endif$
 
+          $if(research)$
           \section{Research Experience}
-
-          \textbf{Graduate Research Assistant} \hfill {August 2015 - present}
+          $for(research)$
+          \textbf{$research.researchName$} \hfill {$research.researchWhen$}
+          $if(research.researchWhere)$\\\emph{$research.researchWhere$}$endif$
+          $if(research.researchDescription)$
           \begin{innerlist}
-          \item[] Department of Computer Science,\\
-            Cornell University\\
-            \emph{Project:}  ``Diagnosing Students' Misconceptions through Programming-by-Demonstration"\\
-            Advisor: Erik Andersen, Ph.D
-
-          \end{innerlist}
-
-          \textbf{Research Assistant (Summer@ICERM REU)} \hfill {Summer 2014}
-          \begin{innerlist}
-
-          \item[] 
-            \href{http://icerm.brown.edu/summerug_2014/}{Institute for Computational and Experimental Research in Mathematics (ICERM)},\\
-            Brown University\\
-            \emph{Project:} ``Computation and Analysis on Reinhardt Polygons with Multiple Prime Divisors"
-            Advisor: Michael Mossinghoff, Ph.D (Davidson College)
-
-          \end{innerlist} 
-
-          \textbf{Research Assistant} \hfill {Summer 2013}
-          \begin{innerlist}
-
-          \item[] Department of Mathematics,\\
-            Tufts University\\
-            \emph{Project:} ``Numerical Models for the time-dependent Heat and Stokes' Equations"\\
-            Advisors: Scott MacLachlan, Ph.D (Memorial University of Newfoundland) and James Adler, Ph.D. 
-          \end{innerlist}        
-
-
+          \item[]$research.researchDescription$
+          \end{innerlist}$endif$
+          $endfor$
+          $endif$
 
           \section{Teaching Experience}
           {\bf{Graduate Teaching Asssistant}} \hfill {Fall 2015}

@@ -41,14 +41,29 @@ education:
         courseMnemonic: CS 6786
         yearTaken: Spring 2016
 publications:
-  - publicationType: Conference 
+  - publicationType: Conference
     publicationYear: 1999
     authors: [Wil Thomason, Elvis Presley, George Bush]
     publicationVenue: ICRPSFR
-    publicationTitle: Towards a Novel Method for Automating Abstracted Methods 
+    publicationTitle: Towards a Novel Method for Automating Abstracted Methods
     publicationDescription: We make things do stuff rather than actions
 awards:
   - awardName: Best Fooer of Bars
     dateAwarded: March of 1944
-    awarder: Theodore Roosevelt's ghost
+    awarder: The Ghost of Theodore Roosevelt
     awardSummary: I fooed the most bars the best
+  - awardName: Even greater Bar Fooing
+    dateAwarded: March of 2144
+    awarder: The concept of ennui
+    awardSummary: I fooed the most bars the best, but better
+research:
+  - researchName: Graduate Research Assistant
+    researchWhen: The Dawn of Time - Now
+    researchWhere: Cornell University, Department of Computer Science
+    researchDescription: "Working with Professor Doctor, I spent my entire life focusing on a novel
+      means of fooing bars. We found that while bars may be fooed, a baz may be fooed with 95\\%
+      efficiency, as compared to a bar's 50\\% efficiency rate. Thus, by utilizing a bar-baz bridge,
+      we were able to achive unprecedented bar fooing efficiency."
+  - researchName: Summer Researcher
+    researchWhen: December 1998
+    researchWhere: The Northern Hemisphere
