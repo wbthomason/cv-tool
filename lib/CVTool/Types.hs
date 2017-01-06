@@ -147,7 +147,7 @@ instance ToJSON CVPresentations
 
 data CVSkill = CVSkill {
   skillName :: String,
-  skillLevel :: String,
+  skillLevel :: Maybe String,
   skillKeywords :: Maybe [String]
 }
   deriving (Generic)

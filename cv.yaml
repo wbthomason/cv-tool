@@ -97,3 +97,25 @@ work:
     endDate: Red
     workSummary: Principal developer on team for exploding ducks and other waterfowl
     highlights: [Fixed major bug, created more major bug, ate lunch most days]
+  - company: Oople
+    position: "You probably haven't heard of it"
+    companyWebsite: www.anothersite.com
+    startDate: Feb 1907
+    endDate: March 1792
+    workSummary: I took shiny things and made them shinier
+    highlights: [Master of condescension, Objective-C expert]
+memberships:
+  - role: President
+    organization: United States of America
+  - role: Chancellor Exchequer
+    organization: A small cluster of Helium atoms
+interests:
+  - interestName: Robuts
+  - interestName: Computers
+    interestKeywords: [Foo, Bar, Baz]
+skills:
+  - skillName: Haskell
+    skillLevel: Monadic
+  - skillName: Python
+  - skillName: Dance
+    skillLevel: Expert

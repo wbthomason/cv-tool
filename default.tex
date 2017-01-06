@@ -257,11 +257,11 @@ anchorcolor=darkblue,citecolor=darkblue}
           \section{Objective}
           $basics.objective$
           $endif$
+
           $if(interests)$
           \section{Research Interests}
           $for(interests)$
-          $interests.topic$,
-          $endfor$
+          $interests.interestName$$sep$,$endfor$
           \\
           $endif$
 
@@ -373,23 +373,25 @@ anchorcolor=darkblue,citecolor=darkblue}
             \item $work.highlights$
             $endfor$
           \end{itemize}
-            $endfor$
+            $sep$\bigskip$endfor$
           $endif$
 
           $if(memberships)$
           \section{Memberships}
+          $for(memberships)$
+          $memberships.role$ of $memberships.organization$
+          $sep$\\$endfor$
           $endif$
 
           $if(skills)$
           \section{Skills}
+          $for(skills)$
+          $skills.skillName$$if(skills.skillLevel)$ \emph{(Proficiency: $skills.skillLevel$)}$endif$
+          $sep$\\$endfor$
           $endif$
 
           $if(languages)$
           \section{Languages}
-          $endif$
-
-          $if(interests)$
-          \section{Interests}
           $endif$
 
           $if(volunteering)$
