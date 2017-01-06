@@ -1,14 +1,14 @@
 name:                cv-tool
 version:             0.1.0.0
-synopsis:            Initial project template from stack
+synopsis:            Makes CVs in many formats from many formats
 description:         Please see README.md
-homepage:            http://github.com/githubuser/cv-tool#readme
-license:             BSD3
+homepage:            http://github.com/wbthomason/cv-tool#readme
+license:             MIT
 license-file:        LICENSE
-author:              Author name here
-maintainer:          example@example.com
-copyright:           2016 Author Here
-category:            Web
+author:              Wil Thomason
+maintainer:          wbthomason@cs.cornell.edu
+copyright:           2016 Wil Thomason
+category:            CLI
 build-type:          Simple
 -- extra-source-files:
 cabal-version:       >=1.10
