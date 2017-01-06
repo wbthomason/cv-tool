@@ -23,11 +23,11 @@ metaEncodeValue value =
         Number n  -> MetaString $ show . toRealFloat $ n
         Bool b    -> MetaBool b
 
-makeMap cvMap = 
-  HashMap.foldlWithKey' (\acc name value -> Map.insert (unpack name) (metaEncodeValue value) acc) Map.empty cvValues
+makeMap cvMap =
+  HashMap.foldlWithKey' (\acc kname value -> Map.insert (unpack kname) (metaEncodeValue value) acc) Map.empty cvValues
   where cvValues = HashMap.filter (\value -> case value of Ae.Null -> False ; _ -> True) cvMap
 
-buildMeta cvData = 
+buildMeta cvData =
   Meta { unMeta = makeMap cvData }
 
 toObject cvData =
@@ -38,7 +38,7 @@ buildPandoc :: (a -> Either String CVData) -> a -> Either String Pandoc
 buildPandoc parser inputData = (\meta -> Pandoc meta []) <$> buildMeta <$> toObject <$> parser inputData
 
 tomlToJson :: Text -> Result CVData
-tomlToJson inputData = 
+tomlToJson inputData =
   case parseTomlDoc "InputCVData" inputData of
         Right toml  -> fromJSON . toJSON $ toml
         Left err    -> Ae.Error $ "TOML parse error: " ++ show (errorPos err)

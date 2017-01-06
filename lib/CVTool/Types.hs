@@ -1,27 +1,24 @@
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE OverloadedStrings #-}
-module CVTool.Types where 
+module CVTool.Types where
 
 import Control.Applicative
 
 import Data.Aeson
 import Data.Scientific (FPFormat(Fixed), formatScientific)
-import Data.Time
 import Data.Text (unpack)
 import qualified Data.Vector as V
 
 import GHC.Generics
 
-import System.FilePath
-
-data EitherStringNum = EitherStringNum String
+newtype EitherStringNum = EitherStringNum String
   deriving (Generic)
 instance FromJSON EitherStringNum where
   parseJSON s = EitherStringNum
     <$> 
-      ((withText "String" (\x -> return $ unpack x) s) 
+      (withText "String" (return . unpack) s 
       <|> 
-      (withScientific "Integer" (\x -> return $ formatScientific Fixed (Just 0) x) s))
+      withScientific "Integer" (return . formatScientific Fixed (Just 0)) s)
 instance ToJSON EitherStringNum
 
 data CVLocation = CVLocation {
@@ -124,10 +121,10 @@ data CVPublication = CVPublication {
 instance FromJSON CVPublication
 instance ToJSON CVPublication
 
-data CVPublications = CVPublicationList [CVPublication] | CVPublicationFile FilePath 
+data CVPublications = CVPublicationList [CVPublication] | CVPublicationFile FilePath
   deriving (Generic)
 instance FromJSON CVPublications where
-  parseJSON v = (CVPublicationList <$> (withArray "List" (\x -> mapM parseJSON (V.toList x)) v)) <|> (CVPublicationFile <$> (withText "String" (\x -> return $ unpack x) v))
+  parseJSON v = (CVPublicationList <$> withArray "List" (mapM parseJSON . V.toList ) v) <|> (CVPublicationFile <$> withText "String" (return . unpack) v)
 instance ToJSON CVPublications
 
 data CVPresentation = CVPresentation {
@@ -157,6 +154,7 @@ instance ToJSON CVSkill
 
 data CVResearch = CVResearch {
   researchTopic :: String,
+  researchWhen :: String,
   researchDescription :: Maybe String
 }
   deriving (Generic)
@@ -187,7 +185,7 @@ data CVMembership = CVMembership {
 instance FromJSON CVMembership
 instance ToJSON CVMembership
 
-data CVData = CVData { 
+data CVData = CVData {
   basics :: CVBasics,
   work :: Maybe [CVWork],
   volunteering :: Maybe [CVWork],
@@ -200,7 +198,7 @@ data CVData = CVData {
   languages :: Maybe [CVLanguage],
   interests :: Maybe [CVInterest],
   memberships :: Maybe [CVMembership]
-} 
+}
   deriving (Generic)
 
 instance FromJSON CVData

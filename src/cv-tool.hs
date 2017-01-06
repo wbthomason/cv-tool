@@ -32,7 +32,7 @@ main = do
   when help printHelp
   inputData <- B.readFile inFile
   let reader = case takeExtension inFile of
-                    ".yaml" ->  readYaml  
+                    ".yaml" ->  readYaml
                     ".toml" ->  readToml . decodeUtf8
                     ".json" ->  readJson . fromStrict
   let textWriter = writeFile outFile
