@@ -43,10 +43,11 @@ education:
 publications:
   - publicationType: Conference
     publicationYear: 1999
-    authors: [Wil Thomason, Elvis Presley, George Bush]
+    authors: [Elvis Presley, George Bush]
     publicationVenue: ICRPSFR
     publicationTitle: Towards a Novel Method for Automating Abstracted Methods
     publicationDescription: We make things do stuff rather than actions
+    publicationLink: www.ask.com
 awards:
   - awardName: Best Fooer of Bars
     dateAwarded: March of 1944
@@ -67,3 +68,32 @@ research:
   - researchName: Summer Researcher
     researchWhen: December 1998
     researchWhere: The Northern Hemisphere
+teaching:
+  - teachingName: Graduate Teaching Assistant
+    teachingWhen: Spring 1607
+    teachingWhere: Trump University
+    teachingDescription: I taught the biggest, \textbf{hugest} course on ignoring reality
+  - teachingName: Instructor
+    teachingWhen: Always
+    teachingWhere: School of Hard Knocks
+presentations:
+  - presentationDate: October 43rd, Never
+    presenters: Bigfoot
+    presentationVenue: ICRPSFR
+    presentationTitle: "Towards a Novel Method for Automating Abstracted Methods 2: Electric Boogaloo"
+    presentationDescription: We make things do stuff rather than actions, but again
+    presentationLink: www.google.com
+  - presentationDate: Tomorrow
+    presenters: A solitary snowball
+    presentationVenue: ICRPSFR
+    presentationTitle: "How to not"
+    presentationDescription: Do you? Have you considered not? Now.
+    presentationLink: www.yahoo.com
+work:
+  - company: Macrosuft
+    position: Developer!
+    companyWebsite: www.somesite.com
+    startDate: August 3111
+    endDate: Red
+    workSummary: Principal developer on team for exploding ducks and other waterfowl
+    highlights: [Fixed major bug, created more major bug, ate lunch most days]

@@ -286,7 +286,7 @@ anchorcolor=darkblue,citecolor=darkblue}
             ($education.courses.yearTaken$)$endif$$sep$,$endfor$
             $endif$
           \end{innerlist}
-          $endfor$
+          $sep$\bigskip$endfor$
 
           $if(publications)$
           \section{Publications}
@@ -296,13 +296,40 @@ anchorcolor=darkblue,citecolor=darkblue}
           ($publications.contents.publicationYear$)
           \begin{innerlist}
           \item[]$for(publications.contents.authors)$
-          $publications.contents.authors$$sep$,
-          $endfor$.
-          $if(publications.contents.publicationDescription)$
+            $publications.contents.authors$$sep$,
+            $endfor$.
+            $if(publications.contents.publicationDescription)$
           \item[]$publications.contents.publicationDescription$
+            $endif$
+            $if(publications.contents.publicationLink)$
+          \item[]\url{$publications.contents.publicationLink$}
+            $endif$
+          \end{innerlist}
+          $sep$\bigskip$endfor$
           $endif$
-        \end{innerlist}
-          $endfor$
+
+          $if(research)$
+          \section{Research Experience}
+          $for(research)$
+          \textbf{$research.researchName$} \hfill {$research.researchWhen$}
+          \\\emph{$research.researchWhere$}
+          $if(research.researchDescription)$
+          \begin{innerlist}
+          \item[]$research.researchDescription$
+          \end{innerlist}$endif$
+          $sep$\bigskip$endfor$
+          $endif$
+
+          $if(teaching)$
+          \section{Teaching Experience}
+          $for(teaching)$
+          \textbf{$teaching.teachingName$} \hfill $teaching.teachingWhen$
+          \\\emph{$teaching.teachingWhere$}
+          $if(teaching.teachingDescription)$
+          \begin{innerlist}
+          \item[]$teaching.teachingDescription$
+          \end{innerlist}$endif$
+          $sep$\bigskip$endfor$
           $endif$
 
           $if(awards)$
@@ -314,86 +341,60 @@ anchorcolor=darkblue,citecolor=darkblue}
           \item[]$awards.awardSummary$
           \end{innerlist}
           $endif$
-          $endfor$
+          $sep$\bigskip$endfor$
           $endif$
 
-          $if(research)$
-          \section{Research Experience}
-          $for(research)$
-          \textbf{$research.researchName$} \hfill {$research.researchWhen$}
-          $if(research.researchWhere)$\\\emph{$research.researchWhere$}$endif$
-          $if(research.researchDescription)$
-          \begin{innerlist}
-          \item[]$research.researchDescription$
-          \end{innerlist}$endif$
-          $endfor$
-          $endif$
-
-          \section{Teaching Experience}
-          {\bf{Graduate Teaching Asssistant}} \hfill {Fall 2015}
-          \begin{innerlist}
-          \item[] CS 4700: Foundations of Artificial Intelligence \\
-            Instructor: Bart Selman, Ph.D.\\
-            Department of Computer Science, \\
-            Cornell University
-          \end{innerlist}
-
-
-
-
-          %\textbf{Teaching Assistant} \hfill {Springs 2011--12}
-          {\bf{Mathematics Teaching Assistant and Grader}} \hfill {Spring 2015, Fall 2014, Spring 2012}
-          \begin{innerlist}
-          \item[] Honors Multivariable Calculus and Linear Algebra\\
-            Instructors: Charles M. Grinstead, Ph.D and Scott Cook, Ph.D.\\
-            Department of Mathematics \& Statistics,\\
-            Swarthmore College
-          \end{innerlist}
-
-          {\bf{Computer Science Teaching Assistant}} \hfill {Fall 2013 and Fall 2012}
-          \begin{innerlist}
-          \item[]  Data Structures \& Algorithms and Introduction to Computer Science\\
-            Instructors: Ameet Soni, Ph.D, Joshua Brody, Ph.D. and Jeff Knerr, Ph.D. \\
-            Department of Computer Science,\\
-            Swarthmore College
-          \end{innerlist}
-
-          %\section{Awards}
-          %\begin{innerlist}
-          %\item[] {\bf{Heinrich W. Brinkmann Mathematics Prize}} \hfill May 2015
-          %\begin{innerlist}
-          %\item This prize is presented annually by Swarthmore College's Department of Mathematics and Statistic to the student or students who submit the best paper on a mathematical subject. Awarded for ``How to Always Win Every Game: Combinatorial Game Theory and the Sprague-Grundy Theorem." Carries a cash prize and the opportunity for an invited talk.
-          %\end{innerlist}
-          %
-          %
-          %\item[] {\bf{National Science Foundation Research Stipend}} \hfill Summer 2014
-          %\begin{innerlist}
-          %\item Fully funded research assistantship at ICERM, an NSF Research Institute.
-          %\end{innerlist}
-          % 
-          %\item[] {\bf{David Baltimore '60/Broad Foundation Endowment Fellowship}}\hfill Summer 2013
-          %\begin{innerlist}
-          %\item This fellowship is awarded to a student doing summer research in the natural sciences or engineering.
-          %\end{innerlist}
-          %
-          %\end{innerlist}
-
+          $if(presentations)$
           \section{Presentations}
-          M.Q. Feldman, R. Kenyon, \& J. Liu. ``Computation and analysis on Reinhardt polygons with multiple distinct prime divisors." Final Presentation, Summer@ICERM, Providence, RI, 6 August 2014.\\
+          $for(presentations.contents)$
+          $presentations.contents.presenters$:
+          ``$presentations.contents.presentationTitle$.''
+          \emph{$presentations.contents.presentationVenue$}\hfill
+          $presentations.contents.presentationDate$
+          \begin{innerlist}
+            $if(presentations.contents.presentationDescription)$
+          \item[]$presentations.contents.presentationDescription$
+            $endif$
+            $if(presentations.contents.presentationLink)$
+          \item[]\url{$presentations.contents.presentationLink$}
+            $endif$
+          \end{innerlist}
+          $sep$\bigskip$endfor$
+          $endif$
 
-          M.Q. Feldman, L. Laderman \& M.T. Mathay. ``Improving Female Retention in the Physical Sciences." Final Presentation for Statistical Methods (independent research), Swarthmore College, Swarthmore, PA, 12 December 2012. 
+          $if(work)$
+          \section{Work}
+          $for(work)$
+          \textbf{$work.position$ at $work.company$}\hfill $work.startDate$ - $work.endDate$\\
+          $work.workSummary$
+          \begin{itemize}
+            \setlength\itemsep{0em}
+            $for(work.highlights)$
+            \item $work.highlights$
+            $endfor$
+          \end{itemize}
+            $endfor$
+          $endif$
 
-
-
+          $if(memberships)$
           \section{Memberships}
-          Member, Swarthmore College Chapter, Phi Beta Kappa\\
-          Elected, Swarthmore College Chapter, Sigma Xi\\
-          Member, Association for Computing Machinery (ACM) and ACM-W
+          $endif$
 
-          \section{Miscellaneous }
-          \emph{Computational Skills:} Python, C\#, C++, Pyret, Racket, Unix, \LaTeX \\
-          \emph{Personal:} Trained in Modern dance and classical Indian dance (Kathak and Odissi)
+          $if(skills)$
+          \section{Skills}
+          $endif$
 
+          $if(languages)$
+          \section{Languages}
+          $endif$
+
+          $if(interests)$
+          \section{Interests}
+          $endif$
+
+          $if(volunteering)$
+          \section{Volunteering}
+          $endif$
 
           \end{document}
 

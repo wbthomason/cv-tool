@@ -132,7 +132,8 @@ data CVPresentation = CVPresentation {
   presentationLink :: Maybe String,
   presentationDescription :: Maybe String,
   presentationVenue :: String,
-  presentationDate :: String
+  presentationDate :: String,
+  presenters :: String
 }
   deriving (Generic)
 instance FromJSON CVPresentation
@@ -140,7 +141,8 @@ instance ToJSON CVPresentation
 
 data CVPresentations = CVPresentationFile FilePath | CVPresentationList [CVPresentation]
   deriving (Generic)
-instance FromJSON CVPresentations
+instance FromJSON CVPresentations where
+  parseJSON v = (CVPresentationList <$> withArray "List" (mapM parseJSON . V.toList ) v) <|> (CVPresentationFile <$> withText "String" (return . unpack) v)
 instance ToJSON CVPresentations
 
 data CVSkill = CVSkill {
@@ -161,6 +163,16 @@ data CVResearch = CVResearch {
   deriving (Generic)
 instance FromJSON CVResearch
 instance ToJSON CVResearch
+
+data CVTeaching = CVTeaching {
+  teachingName :: String,
+  teachingWhen :: String,
+  teachingDescription :: Maybe String,
+  teachingWhere :: String
+}
+  deriving (Generic)
+instance FromJSON CVTeaching
+instance ToJSON CVTeaching
 
 data CVLanguage = CVLanguage {
   language :: String,
@@ -188,17 +200,18 @@ instance ToJSON CVMembership
 
 data CVData = CVData {
   basics :: CVBasics,
-  work :: Maybe [CVWork],
-  volunteering :: Maybe [CVWork],
   education :: [CVEducation],
   awards :: Maybe [CVAwards],
   publications :: Maybe CVPublications,
+  research :: Maybe [CVResearch],
+  teaching :: Maybe [CVTeaching],
   presentations :: Maybe CVPresentations,
   skills :: Maybe [CVSkill],
-  research :: Maybe [CVResearch],
   languages :: Maybe [CVLanguage],
   interests :: Maybe [CVInterest],
-  memberships :: Maybe [CVMembership]
+  memberships :: Maybe [CVMembership],
+  work :: Maybe [CVWork],
+  volunteering :: Maybe [CVWork]
 }
   deriving (Generic)
 
