@@ -5,4 +5,5 @@ packages:
 extra-deps:
 - bibtex-0.1.0.6
 - latex-0.1.0.3
-resolver: lts-7.14
+resolver: lts-8.8
+system-ghc: true

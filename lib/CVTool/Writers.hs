@@ -9,10 +9,12 @@ import qualified Text.Pandoc as P (
   def)
 import Text.Pandoc.PDF
 
-setOptions template = P.def { P.writerTemplate = template, P.writerStandalone = True }
+setOptions :: String -> P.WriterOptions
+setOptions template = P.def { P.writerTemplate = Just template }
 
 handleCitations pandocData = pandocData
 
+writeText :: (P.WriterOptions -> a -> b) -> String -> a -> b
 writeText writer template pandocData = writer (setOptions template) $ handleCitations pandocData
 
 writeJSON = writeText P.writeJSON
