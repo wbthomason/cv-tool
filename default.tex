@@ -387,9 +387,11 @@ anchorcolor=darkblue,citecolor=darkblue}
 
           $if(skills)$
           \section{Skills}
+          \begin{itemize}
           $for(skills)$
-          $skills.skillName$$if(skills.skillLevel)$ \emph{(Proficiency: $skills.skillLevel$)}$endif$
-          $sep$\\$endfor$
+          \item $skills.skillName$$if(skills.skillLevel)$ \emph{(Proficiency: $skills.skillLevel$)}$endif$
+          $endfor$
+          \end{itemize} 
           $endif$
 
           $if(languages)$
@@ -404,12 +406,15 @@ anchorcolor=darkblue,citecolor=darkblue}
           $for(volunteering)$
           \textbf{$volunteering.company$}\hfill $volunteering.startDate$ - $volunteering.endDate$\\
           $volunteering.workSummary$
+          $if(volunteering.companyWebsite)$\\\url{$volunteering.companyWebsite$}$endif$
+          $if(volunteering.highlights)$
           \begin{itemize}
             \setlength\itemsep{0em}
             $for(volunteering.highlights)$
             \item $volunteering.highlights$
             $endfor$
           \end{itemize}
+          $endif$
             $sep$\bigskip$endfor$
           $endif$
 

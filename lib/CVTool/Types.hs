@@ -62,11 +62,11 @@ instance ToJSON CVBasics
 data CVWork = CVWork {
   company :: String,
   position :: String,
-  companyWebsite :: String,
+  companyWebsite :: Maybe String,
   startDate :: String,
   endDate :: String,
   workSummary :: String,
-  highlights :: [String]
+  highlights :: Maybe [String]
 }
   deriving (Generic)
 instance FromJSON CVWork
