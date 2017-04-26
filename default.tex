@@ -309,30 +309,6 @@ anchorcolor=darkblue,citecolor=darkblue}
           $sep$\bigskip$endfor$
           $endif$
 
-          $if(research)$
-          \section{Research Experience}
-          $for(research)$
-          \textbf{$research.researchName$} \hfill {$research.researchWhen$}
-          \\\emph{$research.researchWhere$}
-          $if(research.researchDescription)$
-          \begin{innerlist}
-          \item[]$research.researchDescription$
-          \end{innerlist}$endif$
-          $sep$\bigskip$endfor$
-          $endif$
-
-          $if(teaching)$
-          \section{Teaching Experience}
-          $for(teaching)$
-          \textbf{$teaching.teachingName$} \hfill $teaching.teachingWhen$
-          \\\emph{$teaching.teachingWhere$}
-          $if(teaching.teachingDescription)$
-          \begin{innerlist}
-          \item[]$teaching.teachingDescription$
-          \end{innerlist}$endif$
-          $sep$\bigskip$endfor$
-          $endif$
-
           $if(awards)$
           \section{Awards}
           $for(awards)$
@@ -360,6 +336,30 @@ anchorcolor=darkblue,citecolor=darkblue}
           \item[]\url{$presentations.contents.presentationLink$}
             $endif$
           \end{innerlist}
+          $sep$\bigskip$endfor$
+          $endif$
+
+          $if(research)$
+          \section{Research Experience}
+          $for(research)$
+          \textbf{$research.researchName$} \hfill {$research.researchWhen$}
+          \\\emph{$research.researchWhere$}
+          $if(research.researchDescription)$
+          \begin{innerlist}
+          \item[]$research.researchDescription$
+          \end{innerlist}$endif$
+          $sep$\bigskip$endfor$
+          $endif$
+
+          $if(teaching)$
+          \section{Teaching Experience}
+          $for(teaching)$
+          \textbf{$teaching.teachingName$} \hfill $teaching.teachingWhen$
+          \\\emph{$teaching.teachingWhere$}
+          $if(teaching.teachingDescription)$
+          \begin{innerlist}
+          \item[]$teaching.teachingDescription$
+          \end{innerlist}$endif$
           $sep$\bigskip$endfor$
           $endif$
 
