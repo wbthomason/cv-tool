@@ -313,7 +313,7 @@ anchorcolor=darkblue,citecolor=darkblue}
           $if(awards)$
           \section{Awards}
           $for(awards)$
-          \textbf{$awards.awardName$} \hfill $awards.awarder$, $awards.dateAwarded$
+          \textbf{$awards.awardName$} \hfill \textit{$awards.awarder$}, $awards.dateAwarded$
           $if(awards.awardSummary)$
           \begin{innerlist}
           \item[]$awards.awardSummary$
