@@ -304,7 +304,7 @@ anchorcolor=darkblue,citecolor=darkblue}
           \item[]$publications.contents.publicationDescription$
             $endif$
             $if(publications.contents.publicationLink)$
-          \item[]\url{$publications.contents.publicationLink$}
+          \item[]\href{$publications.contents.publicationLink$}{\nolinkurl{$publications.contents.publicationLink$}}
             $endif$
           \end{innerlist}
           $sep$\bigskip$endfor$
