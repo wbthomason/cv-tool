@@ -261,9 +261,10 @@ anchorcolor=darkblue,citecolor=darkblue}
 
           $if(interests)$
           \section{Research Interests}
+          \begin{innerlist}
           $for(interests)$
-          $interests.interestName$$sep$,$endfor$
-          \\
+          \item[]$interests.interestName$$sep$,$endfor$
+          \end{innerlist}
           $endif$
 
           \section{Education}
