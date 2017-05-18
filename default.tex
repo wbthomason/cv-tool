@@ -31,6 +31,7 @@
 \usepackage{calc}
 \usepackage{comment}
 \usepackage[utf8]{inputenc}
+\usepackage{tabu}
 %\usepackage{hyperref}
 
 % Simpler bibsection for CV sections
@@ -243,7 +244,7 @@ anchorcolor=darkblue,citecolor=darkblue}
           %
           \newlength{\rcollength}\setlength{\rcollength}{1.4in}%
           %
-          \begin{tabular}[t]{@{}p{\textwidth-\rcollength}p{\rcollength}}
+          \begin{tabu} to 1.0\textwidth {X[l]X[r]}
             $basics.institution$ & $basics.phone$ \\
             $basics.department$ & \email{$basics.email$}\\
             $for(basics.location.address)$
@@ -253,7 +254,7 @@ anchorcolor=darkblue,citecolor=darkblue}
             $if(basics.personalSite)$
             \href{$basics.personalSite$}{\nolinkurl{$basics.personalSite$}}
             $endif$ & \\
-          \end{tabular}
+          \end{tabu}
 
           $if(basics.objective)$
           \section{Objective}
