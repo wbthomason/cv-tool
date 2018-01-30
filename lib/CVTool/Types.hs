@@ -49,6 +49,7 @@ data CVBasics = CVBasics {
   email :: String,
   phone :: String,
   personalSite :: Maybe String,
+  pgpKey :: Maybe String,
   objective :: Maybe String,
   location :: CVLocation,
   profiles :: [CVProfile],

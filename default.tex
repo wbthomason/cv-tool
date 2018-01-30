@@ -232,7 +232,7 @@ anchorcolor=darkblue,citecolor=darkblue}
 
           \begin{document}
           \sloppy
-          \makeheading{$basics.name$}
+          \makeheading{\huge{$basics.name$}}
 
           \section{Contact Information}
 
@@ -253,7 +253,11 @@ anchorcolor=darkblue,citecolor=darkblue}
             $basics.location.city$, $basics.location.state$ $basics.location.postalCode$\\
             $if(basics.personalSite)$
             \href{$basics.personalSite$}{\nolinkurl{$basics.personalSite$}}
-            $endif$ & \\
+            (\emph{web})
+            $endif$ & 
+            $if(basics.pgpKey)$
+            \href{$basics.pgpKey$}{\nolinkurl{$basics.pgpKey$}} (\emph{pgp, e2e})
+            $endif$ \\
           \end{tabu}
 
           $if(basics.objective)$
